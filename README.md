@@ -35,19 +35,19 @@ assets/
 
 ## Was du noch austauschen solltest
 
-- **Dein echtes Logo:** Lade dein Original als transparentes PNG hoch und ersetze
-  `assets/globe.png`. Hinweis: Die hochgeladene JPG-Datei hatte einen schwarzen
-  Hintergrund, wodurch der schwarze Schriftzug „Eue Design" unsichtbar wurde –
-  daher ist aktuell nur die Weltkugel als Bild eingebunden und „Eue Design"
-  als Text gesetzt.
+- **Dein echtes Logo:** Die Weltkugel (`assets/globe.png`) und das komplett
+  freigestellte Logo (`assets/logo-full.png`) wurden aus deiner aktuellen
+  Logodatei erzeugt. Im Header/Footer wird die Weltkugel mit dem Schriftzug
+  „Eue Design" (in der Schrift Quicksand) kombiniert.
 - **Projektbilder:** `assets/projekt-fieth-bau.svg` und
   `assets/projekt-aluminium-foil-consult.svg` durch echte Screenshots ersetzen
   (gleicher Dateiname, oder den Pfad in `index.html` anpassen).
 - **Optional Foto von dir:** kann in den „Über mich"-Bereich eingebaut werden.
 
-## Eigene Schrift (optional)
+## Schrift (Quicksand)
 
-Möchtest du den exakten Logo-Look (z. B. Playfair Display)? In `styles.css` ist
-oben ein vorbereiteter `@font-face`-Block. Lade die `.woff2`-Datei nach
-`assets/fonts/`, entferne die Kommentare und ergänze die Schrift in
-`--font-display`. So bleibt alles lokal und datenschutzkonform.
+Die Seite nutzt die Schrift **Quicksand**, selbst-gehostet (ohne Google-Server,
+datenschutzkonform). Die Schriftdateien gehören in `assets/fonts/` – eine
+Schritt-für-Schritt-Anleitung dazu liegt in `assets/fonts/ANLEITUNG.txt`.
+Solange die Dateien fehlen, zeigt die Seite automatisch eine ähnliche
+Ersatzschrift; sie ist also nie kaputt.

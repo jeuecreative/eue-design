@@ -4,20 +4,39 @@
    Keine externen Schriften/Anfragen (datenschutzfreundlich).
    ========================================================= */
 
-/* --- OPTIONAL: Eigene Schriften selbst hosten -------------
-   Möchtest du den exakten Logo-Look (z. B. Playfair Display)?
-   Lade die .woff2-Dateien herunter, lege sie in /assets/fonts/
-   und entferne die Kommentare unten. Dann bleibt alles lokal
-   und datenschutzkonform (keine Google-Server).
-
+/* --- Schrift: Quicksand (selbst-gehostet, datenschutzkonform) ---
+   Die drei Schriftdateien gehören in /assets/fonts/.
+   Falls sie noch fehlen, greift automatisch eine ähnliche
+   Ersatzschrift – siehe Anleitung in assets/fonts/ANLEITUNG.txt.
+----------------------------------------------------------------- */
 @font-face {
-  font-family: 'Playfair Display';
-  src: url('assets/fonts/playfair-display.woff2') format('woff2');
-  font-weight: 400 900;
+  font-family: 'Quicksand';
+  src: url('assets/fonts/quicksand-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
   font-display: swap;
 }
-   Danach in --font-display 'Playfair Display' an erster Stelle ergänzen.
------------------------------------------------------------ */
+@font-face {
+  font-family: 'Quicksand';
+  src: url('assets/fonts/quicksand-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Quicksand';
+  src: url('assets/fonts/quicksand-semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Quicksand';
+  src: url('assets/fonts/quicksand-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   --ink:      #15212E;   /* Marineblau — Text & Überschriften */
@@ -29,10 +48,10 @@
   --muted:    #5A6B7B;   /* gedämpfter Text */
   --divider:  #E4EBF2;
 
-  --font-display: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua',
-                  Palatino, Georgia, 'Times New Roman', serif;
-  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-               Helvetica, Arial, sans-serif;
+  /* Eine Schrift für alles – abgeleitet vom Logo.
+     Fallback (Trebuchet/Segoe) wirkt, bis die Quicksand-Dateien da sind. */
+  --font-display: 'Quicksand', 'Trebuchet MS', 'Segoe UI', system-ui, sans-serif;
+  --font-body:    'Quicksand', 'Trebuchet MS', 'Segoe UI', system-ui, sans-serif;
 
   --maxw: 1080px;
 }

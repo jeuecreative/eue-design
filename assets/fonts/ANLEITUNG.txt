@@ -1,0 +1,39 @@
+SCHRIFT QUICKSAND – SO LEGST DU SIE LOKAL AB
+=============================================
+
+Die Website ist auf die Schrift "Quicksand" eingestellt und bindet sie
+selbst-gehostet ein – also OHNE Google-Server. Das hält die Seite
+datenschutzkonform (deine Datenschutzerklärung sagt genau das aus).
+
+Damit die Schrift erscheint, fehlen hier in diesem Ordner nur noch die
+Schriftdateien. So kommst du in 2 Minuten dran:
+
+EINFACHSTER WEG (empfohlen) – Google Webfonts Helper
+----------------------------------------------------
+1. Öffne:  https://gwfh.mranftl.com/fonts/quicksand
+2. Wähle bei "Select styles" diese Schnitte aus:
+      regular (400), 500, 600, 700
+3. Bei "Copy CSS" als Format "woff2" wählen.
+4. Klicke auf "Download files" – du erhältst eine ZIP mit den Schriftdateien.
+5. Benenne die vier Dateien exakt so um und lege sie in DIESEN Ordner
+   (assets/fonts/):
+
+      quicksand-regular.woff2
+      quicksand-medium.woff2     (= 500)
+      quicksand-semibold.woff2   (= 600)
+      quicksand-bold.woff2       (= 700)
+
+6. Speichern, committen, zu GitHub pushen – fertig. Die Seite nutzt ab
+   sofort Quicksand.
+
+ALTERNATIVE – direkt von Google Fonts
+-------------------------------------
+https://fonts.google.com/specimen/Quicksand  →  "Get font" → herunterladen.
+Die enthaltenen .ttf-Dateien funktionieren auch; dann in der Datei
+styles.css bei den @font-face-Regeln "woff2" durch "truetype" und die
+Dateiendung .woff2 durch .ttf ersetzen. (woff2 ist aber kleiner/schneller.)
+
+HINWEIS
+-------
+Solange die Dateien fehlen, zeigt die Seite automatisch eine ähnliche
+Ersatzschrift an – sie ist also nie kaputt, sieht nur noch nicht final aus.
