@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" height="560" role="img" aria-label="Platzhalter Fieth Bau">
+  <rect width="800" height="560" fill="#F4F8FC"/>
+  <rect x="1" y="1" width="798" height="558" fill="none" stroke="#D7E3F0" stroke-width="2"/>
+  <g fill="none" stroke="#8CC7F1" stroke-width="2" opacity="0.5">
+    <circle cx="400" cy="232" r="70"/>
+    <ellipse cx="400" cy="232" rx="28" ry="70"/>
+    <line x1="330" y1="232" x2="470" y2="232"/>
+    <path d="M345 195 Q400 215 455 195"/>
+    <path d="M345 269 Q400 249 455 269"/>
+  </g>
+  <text x="400" y="360" text-anchor="middle" font-family="Georgia, serif" font-size="34" fill="#15212E">Fieth Bau</text>
+  <text x="400" y="394" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#5A6B7B">Projektbild — bitte ersetzen</text>
+</svg>
