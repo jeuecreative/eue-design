@@ -434,3 +434,29 @@ section { padding: 92px 0; }
   html { scroll-behavior: auto; }
   * { transition: none !important; }
 }
+
+/* --- Cookie-Consent-Banner (Google Ads Conversion-Tracking) --- */
+.cookie-banner {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 200;
+  background: var(--ink); color: #fff;
+  padding: 20px 24px;
+  box-shadow: 0 -8px 24px rgba(0,0,0,0.18);
+  display: none;
+}
+.cookie-banner.visible { display: block; }
+.cookie-banner-inner {
+  max-width: var(--maxw); margin: 0 auto;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px;
+}
+.cookie-banner-inner p { color: #cfe2f2; font-size: 14px; max-width: 640px; margin: 0; line-height: 1.6; }
+.cookie-banner-inner a { color: var(--sky); text-decoration: underline; }
+.cookie-banner-actions { display: flex; gap: 12px; flex-shrink: 0; }
+.cookie-banner-actions .btn { padding: 10px 20px; font-size: 14px; }
+.cookie-banner-actions .btn-ghost { border-color: rgba(255,255,255,0.4); color: #fff; }
+.cookie-banner-actions .btn-ghost:hover { background: rgba(255,255,255,0.12); color: #fff; }
+body.cookie-banner-open .mobile-cta { display: none !important; }
+@media (max-width: 680px) {
+  .cookie-banner-inner { flex-direction: column; align-items: stretch; text-align: left; }
+  .cookie-banner-actions { justify-content: stretch; }
+  .cookie-banner-actions .btn { flex: 1; }
+}

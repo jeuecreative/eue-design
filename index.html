@@ -2,6 +2,23 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
+  <!-- Google tag (gtag.js) — Consent Mode v2: Standard verweigert, bis eine
+       Einwilligung (Cookie-Banner) vorliegt. Siehe Hinweis dazu im Chat. -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied'
+    });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18000222851"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'AW-18000222851');
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eue Design — Webdesign mit Strategie & Liebe zum Detail</title>
   <meta name="description" content="Eue Design: durchdachtes Webdesign mit Strategie und Liebe zum Detail. Starke, authentische Websites mit persönlicher Betreuung von Anfang bis Ende.">
@@ -267,6 +284,63 @@
     n.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', function () { n.classList.remove('open'); t.setAttribute('aria-expanded','false'); });
     });
+  </script>
+
+  <!-- COOKIE-CONSENT-BANNER (Google Ads Conversion-Tracking) -->
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie-Einwilligung">
+    <div class="cookie-banner-inner">
+      <p>Wir nutzen ein Cookie für Google Ads Conversion-Tracking, um zu sehen, wie gut unsere Anzeigen wirken. Es ist nicht technisch notwendig und wird nur mit deiner Einwilligung gesetzt. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+      <div class="cookie-banner-actions">
+        <button type="button" class="btn btn-ghost" id="cookieDecline">Ablehnen</button>
+        <button type="button" class="btn btn-primary" id="cookieAccept">Alle akzeptieren</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var KEY = 'eue_cookie_consent'; // 'granted' | 'denied'
+      var banner = document.getElementById('cookieBanner');
+      if (!banner) return;
+
+      function applyConsent(state) {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'ad_storage': state,
+            'ad_user_data': state,
+            'ad_personalization': state,
+            'analytics_storage': state
+          });
+        }
+      }
+      function hideBanner() {
+        banner.classList.remove('visible');
+        document.body.classList.remove('cookie-banner-open');
+      }
+      function showBanner() {
+        banner.classList.add('visible');
+        document.body.classList.add('cookie-banner-open');
+      }
+
+      var saved = null;
+      try { saved = localStorage.getItem(KEY); } catch (e) {}
+
+      if (saved === 'granted' || saved === 'denied') {
+        applyConsent(saved);
+      } else {
+        showBanner();
+      }
+
+      document.getElementById('cookieAccept').addEventListener('click', function () {
+        try { localStorage.setItem(KEY, 'granted'); } catch (e) {}
+        applyConsent('granted');
+        hideBanner();
+      });
+      document.getElementById('cookieDecline').addEventListener('click', function () {
+        try { localStorage.setItem(KEY, 'denied'); } catch (e) {}
+        applyConsent('denied');
+        hideBanner();
+      });
+    })();
   </script>
 </body>
 </html>
