@@ -2,8 +2,9 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <!-- Google tag (gtag.js) — Consent Mode v2: Standard verweigert, bis eine
-       Einwilligung (Cookie-Banner) vorliegt. Siehe Hinweis dazu im Chat. -->
+  <!-- Google Consent Mode v2 — Standard: alles verweigert.
+       Das Google-Tag (gtag.js) selbst wird NICHT hier geladen, sondern
+       erst nach ausdrücklicher Einwilligung – siehe consent.js. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -11,14 +12,11 @@
       'ad_storage': 'denied',
       'ad_user_data': 'denied',
       'ad_personalization': 'denied',
-      'analytics_storage': 'denied'
+      'analytics_storage': 'denied',
+      'wait_for_update': 500
     });
   </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18000222851"></script>
-  <script>
-    gtag('js', new Date());
-    gtag('config', 'AW-18000222851');
-  </script>
+  <script src="consent.js" defer></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Datenschutzerklärung — Eue Design</title>
   <meta name="robots" content="noindex">
@@ -33,7 +31,11 @@
         <img src="assets/globe.png" alt="">
         <span class="wordmark">Eue Design</span>
       </a>
+      <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
       <nav class="nav" id="nav">
+        <a href="index.html#ueber-mich">Über uns</a>
         <a href="index.html#leistungen">Leistungen</a>
         <a href="index.html#projekte">Projekte</a>
         <a class="btn btn-primary" href="index.html#kontakt">Kontakt</a>
@@ -48,7 +50,7 @@
 
       <h2>§ 1 Allgemeine Informationen</h2>
       <p>In dieser Datenschutzerklärung findest du detaillierte Informationen darüber, was mit deinen persönlichen Daten geschieht, wenn du unsere Website www.eue-design.de besuchst. Alle Daten, die eine persönliche Identifizierung ermöglichen, sind personenbezogene Daten. Bei der Verarbeitung deiner Daten halten wir uns strikt an die gesetzlichen Vorgaben, insbesondere die Datenschutz-Grundverordnung („DSGVO“).</p>
-      <p>Diese Website ist bewusst datensparsam aufgebaut: Schriften werden lokal ausgeliefert, es werden keine eingebetteten Inhalte von Drittanbietern (z. B. externe Karten oder Videos) geladen und es kommen keine Analyse-Tools wie Google Analytics zum Einsatz. Lediglich zur Erfolgsmessung unserer Google-Ads-Anzeigen wird ein Cookie-basiertes Conversion-Tracking eingesetzt – und auch das ausschließlich, wenn du dem im Cookie-Banner zustimmst (siehe § 5).</p>
+      <p>Diese Website ist bewusst datensparsam aufgebaut: Schriften werden lokal ausgeliefert, es kommen keine Analyse-Tools wie Google Analytics zum Einsatz und es sind keine externen Karten oder Videos eingebettet. Der einzige eingebundene Drittanbieter-Dienst ist das Conversion-Tracking von Google Ads – dessen Skript wird erst geladen, nachdem du im Cookie-Banner ausdrücklich zugestimmt hast (siehe § 5).</p>
 
       <h2>§ 2 Verantwortliche Stelle</h2>
       <p>Die Verantwortung für die Erhebung und Verarbeitung personenbezogener Daten auf dieser Website liegt datenschutzrechtlich bei:</p>
@@ -69,7 +71,7 @@
       <p>Cookies sind kleine Textdateien, die auf deinem Endgerät gespeichert werden. Sie sind nicht in der Lage, Programme auszuführen oder Viren auf dein Computersystem zu übertragen.</p>
       <p>Auf dieser Website werden Cookies bzw. vergleichbare Speichertechniken nur in zwei Fällen eingesetzt:</p>
       <ul>
-        <li><strong>Speicherung deiner Cookie-Entscheidung:</strong> Deine Auswahl im Cookie-Banner („Alle akzeptieren“ oder „Ablehnen“) wird lokal in deinem Browser gespeichert, damit du bei jedem Seitenaufruf erneut gefragt wirst. Diese Speicherung ist technisch erforderlich; Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer rechtskonformen, funktionierenden Einwilligungsverwaltung).</li>
+        <li><strong>Speicherung deiner Cookie-Entscheidung:</strong> Deine Auswahl im Cookie-Banner („Alle akzeptieren“ oder „Ablehnen“) wird lokal in deinem Browser gespeichert, damit du nicht bei jedem Seitenaufruf erneut gefragt wirst. Diese Speicherung ist technisch erforderlich; Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer rechtskonformen, funktionierenden Einwilligungsverwaltung). Deine Entscheidung wird nach sechs Monaten automatisch erneut abgefragt.</li>
         <li><strong>Google Ads Conversion-Tracking:</strong> Nicht technisch notwendig und wird ausschließlich nach deiner ausdrücklichen Einwilligung gesetzt (Art. 6 Abs. 1 lit. a DSGVO). Details dazu findest du in § 5.</li>
       </ul>
       <p>Du kannst deinen Browser so einstellen, dass du benachrichtigt wirst, wenn Cookies gesetzt werden sollen. Du kannst dann entscheiden, ob du Cookies im Einzelfall erlaubst, für bestimmte Fälle zulässt oder generell ablehnst. Du kannst auch einstellen, dass Cookies automatisch gelöscht werden, wenn du den Browser schließt. Bitte beachte, dass die Funktionalität dieser Website eingeschränkt sein kann, wenn du Cookies deaktivierst.</p>
@@ -79,12 +81,12 @@
       <p>Wenn du über eine Google-Anzeige auf diese Website gelangst und anschließend eine der vorgesehenen Aktionen ausführst (z. B. eine Anfrage per E-Mail oder Telefon stellst), kann Google dies mithilfe eines Cookies als sogenannte Conversion erfassen. So können wir nachvollziehen, welche Anzeigen zu Anfragen führen.</p>
       <p>Das dabei gesetzte Cookie verliert in der Regel nach 90 Tagen seine Gültigkeit und dient nicht der persönlichen Identifizierung. Es ermöglicht Google lediglich, deinen Browser wiederzuerkennen. Jeder Ads-Kunde erhält ein eigenes Cookie, sodass ein Cross-Website-Tracking ausgeschlossen ist. Gespeichert werden in der Regel eine Unique-Cookie-ID, die Häufigkeit der Anzeigenimpressionen, der Zeitpunkt der letzten Impression und deine Opt-out-Präferenz.</p>
       <p>Wir als Websitebetreiber erhalten weder die Identität noch weitere personenbezogene Daten der Besucher, sondern lediglich die Gesamtzahl der Nutzer, die auf eine Anzeige geklickt und anschließend die gewünschte Aktion ausgeführt haben. Rückschlüsse auf deine Person sind uns dabei nicht möglich.</p>
-      <p>Das Tracking wird nur aktiv, wenn du dem im Cookie-Banner dieser Website ausdrücklich zustimmst. Ohne deine Einwilligung bleibt das Google-Tag im sogenannten Consent Mode: Es werden dann standardmäßig keine Werbe-Cookies gesetzt und keine personenbezogenen Daten an Google übermittelt.</p>
-      <p><strong>Widerruf:</strong> Deine Einwilligung kannst du jederzeit mit Wirkung für die Zukunft widerrufen (Art. 7 Abs. 3 DSGVO), indem du die Website-Daten deines Browsers für diese Seite löschst und die Seite neu lädst – der Cookie-Banner erscheint dann erneut. Zusätzlich kannst du das Conversion-Tracking in deinen Browsereinstellungen deaktivieren. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung bleibt unberührt.</p>
+      <p>Das Tracking wird nur aktiv, wenn du dem im Cookie-Banner dieser Website ausdrücklich zustimmst. Ohne deine Einwilligung wird das Skript von Google gar nicht erst geladen: Es werden dann weder Cookies gesetzt noch Daten wie deine IP-Adresse an Google übertragen.</p>
+      <p><strong>Widerruf:</strong> Deine Einwilligung kannst du jederzeit mit Wirkung für die Zukunft widerrufen (Art. 7 Abs. 3 DSGVO). Über den Link „Cookie-Einstellungen“ in der Fußzeile jeder Seite kannst du deine Auswahl jederzeit neu treffen. Unabhängig davon fragen wir deine Entscheidung nach sechs Monaten automatisch erneut ab. Zusätzlich kannst du das Conversion-Tracking in deinen Browsereinstellungen deaktivieren. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung bleibt unberührt.</p>
       <p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO (Einwilligung). Google kann Daten auch in die USA übertragen; die Übermittlung stützt sich auf die Standardvertragsklauseln der EU-Kommission. Weitere Informationen findest du unter <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a> sowie speziell zu Google Ads unter <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">policies.google.com/technologies/ads</a>.</p>
 
       <h2>§ 6 Kontaktaufnahme per E-Mail</h2>
-      <p>Auf dieser Website befindet sich kein Kontaktformular. Wenn du mich per E-Mail kontaktierst (z. B. über den E-Mail-Button), verarbeite ich die von dir übermittelten Daten – etwa deinen Namen, deine E-Mail-Adresse und den Inhalt deiner Nachricht – ausschließlich zur Bearbeitung deiner Anfrage und für eventuelle Rückfragen. Eine Weitergabe dieser Daten an Dritte erfolgt ohne deine ausdrückliche Einwilligung nicht.</p>
+      <p>Auf dieser Website befindet sich kein Kontaktformular. Wenn du uns per E-Mail kontaktierst (z. B. über den E-Mail-Button), verarbeiten wir die von dir übermittelten Daten – etwa deinen Namen, deine E-Mail-Adresse und den Inhalt deiner Nachricht – ausschließlich zur Bearbeitung deiner Anfrage und für eventuelle Rückfragen. Eine Weitergabe dieser Daten an Dritte erfolgt ohne deine ausdrückliche Einwilligung nicht.</p>
       <p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Anbahnung oder Erfüllung eines Vertrags) bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Beantwortung deiner Anfrage). Deine Daten werden gelöscht, sobald sie für die Bearbeitung nicht mehr erforderlich sind, du zur Löschung aufforderst und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
 
       <h2>§ 7 Verwendung und Weitergabe von Daten</h2>
@@ -161,9 +163,6 @@
       <h2>§ 11 Gültigkeit und Änderung dieser Datenschutzerklärung</h2>
       <p>Diese Datenschutzerklärung tritt am 22.08.2026 in Kraft. Wir behalten uns vor, sie bei Bedarf und unter Einhaltung der geltenden Datenschutzgesetze zu ändern – etwa um neuen rechtlichen Anforderungen gerecht zu werden oder um Änderungen an unserer Website zu berücksichtigen, beispielsweise durch das Hinzufügen eines Kontaktformulars oder von Analyse-Werkzeugen. Die jeweils aktuelle Version, die zum Zeitpunkt deines Besuchs auf dieser Seite abrufbar ist, ist bindend.</p>
 
-      <div class="disclaimer">
-        Hinweis: Diese Datenschutzerklärung ist eine sorgfältig erstellte Vorlage, jedoch keine Rechtsberatung. Da deine Website geschäftlich genutzt wird, empfehle ich, den Text einmal anwaltlich oder über einen spezialisierten Generator (z. B. e-recht24 oder Dr. Schwenke) prüfen zu lassen – insbesondere, sobald sich Funktionen wie ein Kontaktformular oder Analysetools ändern.
-      </div>
 
       <a class="back btn btn-ghost" href="index.html">← Zurück zur Startseite</a>
     </div>
@@ -178,12 +177,16 @@
       <nav class="footer-links">
         <a href="index.html#leistungen">Leistungen</a>
         <a href="index.html#projekte">Projekte</a>
+        <a href="tel:+4915170875533">Telefon</a>
+        <a href="mailto:kontakt@eue-design.de">Kontakt</a>
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
+        <a href="#" id="cookieSettings">Cookie-Einstellungen</a>
       </nav>
-      <div class="footer-copy">© <span id="jahr"></span> Eue Design · Jeanne Eue</div>
+      <div class="footer-copy">© <span id="jahr">2026</span> Eue Design · Jeanne Eue</div>
     </div>
   </footer>
+  <script src="nav.js" defer></script>
   <script>
     var d = new Date();
     document.getElementById('jahr').textContent = d.getFullYear();
@@ -192,7 +195,7 @@
   </script>
 
   <!-- COOKIE-CONSENT-BANNER (Google Ads Conversion-Tracking) -->
-  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie-Einwilligung">
+  <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Cookie-Einwilligung" tabindex="-1">
     <div class="cookie-banner-inner">
       <p>Wir nutzen ein Cookie für Google Ads Conversion-Tracking, um zu sehen, wie gut unsere Anzeigen wirken. Es ist nicht technisch notwendig und wird nur mit deiner Einwilligung gesetzt. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
       <div class="cookie-banner-actions">
@@ -201,51 +204,5 @@
       </div>
     </div>
   </div>
-  <script>
-    (function () {
-      var KEY = 'eue_cookie_consent'; // 'granted' | 'denied'
-      var banner = document.getElementById('cookieBanner');
-      if (!banner) return;
-
-      function applyConsent(state) {
-        if (typeof gtag === 'function') {
-          gtag('consent', 'update', {
-            'ad_storage': state,
-            'ad_user_data': state,
-            'ad_personalization': state,
-            'analytics_storage': state
-          });
-        }
-      }
-      function hideBanner() {
-        banner.classList.remove('visible');
-        document.body.classList.remove('cookie-banner-open');
-      }
-      function showBanner() {
-        banner.classList.add('visible');
-        document.body.classList.add('cookie-banner-open');
-      }
-
-      var saved = null;
-      try { saved = localStorage.getItem(KEY); } catch (e) {}
-
-      if (saved === 'granted' || saved === 'denied') {
-        applyConsent(saved);
-      } else {
-        showBanner();
-      }
-
-      document.getElementById('cookieAccept').addEventListener('click', function () {
-        try { localStorage.setItem(KEY, 'granted'); } catch (e) {}
-        applyConsent('granted');
-        hideBanner();
-      });
-      document.getElementById('cookieDecline').addEventListener('click', function () {
-        try { localStorage.setItem(KEY, 'denied'); } catch (e) {}
-        applyConsent('denied');
-        hideBanner();
-      });
-    })();
-  </script>
 </body>
 </html>

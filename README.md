@@ -6,10 +6,13 @@ Läuft direkt auf GitHub Pages.
 ## Struktur
 
 ```
-index.html          Startseite (Hero, Über mich, Leistungen, Projekte, Kontakt)
-impressum.html      Impressum (§ 5 DDG)
-datenschutz.html    Datenschutzerklärung (DSGVO)
-styles.css          gesamtes Design
+index.html              Startseite (Hero, Über mich, Leistungen, Projekte, Kontakt)
+website-erstellen.html  Landingpage für Google Ads (eigenes CSS, inline)
+impressum.html          Impressum (§ 5 DDG)
+datenschutz.html        Datenschutzerklärung (DSGVO)
+styles.css              gesamtes Design
+consent.js              Cookie-Einwilligung + Nachladen des Google-Tags
+nav.js                  mobiles Navigationsmenü
 assets/
   globe.png         freigestellte Weltkugel aus deinem Logo
   favicon.png       Browser-Icon
@@ -51,3 +54,26 @@ datenschutzkonform). Die Schriftdateien gehören in `assets/fonts/` – eine
 Schritt-für-Schritt-Anleitung dazu liegt in `assets/fonts/ANLEITUNG.txt`.
 Solange die Dateien fehlen, zeigt die Seite automatisch eine ähnliche
 Ersatzschrift; sie ist also nie kaputt.
+
+
+## Cookie-Einwilligung (consent.js)
+
+Das Google-Tag (`gtag.js`) wird **nicht** beim Seitenaufruf geladen. Im `<head>`
+steht nur das Consent-Default-Snippet mit `denied` für alle Kategorien; das
+eigentliche Skript lädt `consent.js` erst nach einem Klick auf
+„Alle akzeptieren". Ohne Einwilligung entsteht damit gar kein Kontakt zu Google –
+auch keine Übertragung der IP-Adresse.
+
+- Die Entscheidung liegt im `localStorage` unter `eue_cookie_consent` als
+  `{"state":"granted|denied","ts":<Zeitstempel>}` und verfällt nach 6 Monaten.
+- Widerruf über den Link „Cookie-Einstellungen" in der Fußzeile jeder Seite
+  (Element-ID `cookieSettings`). Er löscht den Eintrag, setzt Consent auf
+  `denied` und blendet das Banner wieder ein.
+- Neue Seiten brauchen: das Consent-Snippet im `<head>`,
+  `<script src="consent.js" defer></script>`, das Banner-Markup und den
+  Fußzeilen-Link. Am einfachsten aus `impressum.html` kopieren.
+
+**Offen:** In `website-erstellen.html` steht in `trackConversion()` noch der
+Platzhalter `AW-XXXXXXXXX/XXXXXXXXXXXX`. Solange er dort steht, wird bewusst kein
+Conversion-Event gesendet. Das echte Label steht in Google Ads unter
+Ziele → Conversions → Aktion → „Tag selbst installieren".

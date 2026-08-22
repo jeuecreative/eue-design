@@ -24,14 +24,11 @@
     'ad_storage': 'denied',
     'ad_user_data': 'denied',
     'ad_personalization': 'denied',
-    'analytics_storage': 'denied'
+    'analytics_storage': 'denied',
+    'wait_for_update': 500
   });
 </script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18000222851"></script>
-<script>
-  gtag('js', new Date());
-  gtag('config', 'AW-18000222851');
-</script>
+<script src="consent.js" defer></script>
 
 <style>
 /* =========================================================
@@ -635,6 +632,20 @@ section { padding: 92px 0; }
   .cookie-banner-actions .btn { padding: 10px 20px; font-size: 14px; }
   .cookie-banner-actions .btn-ghost { border-color: rgba(255,255,255,0.4); color: #fff; }
   .cookie-banner-actions .btn-ghost:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+  /* --- Sichtbarer Tastatur-Fokus (Barrierefreiheit) ------ */
+  :focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  /* Das Banner erhält beim Einblenden programmatisch den Fokus –
+     dabei soll kein Rahmen um den gesamten Balken erscheinen. */
+  .cookie-banner:focus { outline: none; }
+  .cookie-banner .btn:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+  }
   body.cookie-banner-open .mobile-cta { display: none !important; }
   @media (max-width: 680px) {
     .cookie-banner-inner { flex-direction: column; align-items: stretch; text-align: left; }
@@ -909,7 +920,8 @@ section { padding: 92px 0; }
       <div class="legal-row">
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
-        <span>© <span id="jahr"></span> Eue Design · Preis zzgl. gesetzlicher MwSt.</span>
+        <a href="#" id="cookieSettings">Cookie-Einstellungen</a>
+        <span>© <span id="jahr">2026</span> Eue Design · Preis zzgl. gesetzlicher MwSt.</span>
       </div>
     </div>
   </footer>
@@ -922,10 +934,14 @@ section { padding: 92px 0; }
 
   <script>
     document.getElementById('jahr').textContent = new Date().getFullYear();
+    // TODO: Conversion-Label aus Google Ads eintragen (Tools > Conversions >
+    // Aktion > „Tag selbst installieren“). Solange der Platzhalter steht,
+    // wird bewusst kein Event gesendet – es würde ins Leere laufen.
+    var CONVERSION_ID = 'AW-XXXXXXXXX/XXXXXXXXXXXX';
     function trackConversion(label) {
-      if (typeof gtag === 'function') {
+      if (CONVERSION_ID.indexOf('X') === -1 && typeof gtag === 'function') {
         gtag('event', 'conversion', {
-          'send_to': 'AW-XXXXXXXXX/XXXXXXXXXXXX', // eigene Conversion-ID/-Label eintragen
+          'send_to': CONVERSION_ID,
           'event_callback': function () {}
         });
       }
@@ -934,7 +950,7 @@ section { padding: 92px 0; }
   </script>
 
   <!-- COOKIE-CONSENT-BANNER (Google Ads Conversion-Tracking) -->
-  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie-Einwilligung">
+  <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Cookie-Einwilligung" tabindex="-1">
     <div class="cookie-banner-inner">
       <p>Wir nutzen ein Cookie für Google Ads Conversion-Tracking, um zu sehen, wie gut unsere Anzeigen wirken. Es ist nicht technisch notwendig und wird nur mit deiner Einwilligung gesetzt. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
       <div class="cookie-banner-actions">
@@ -943,51 +959,5 @@ section { padding: 92px 0; }
       </div>
     </div>
   </div>
-  <script>
-    (function () {
-      var KEY = 'eue_cookie_consent'; // 'granted' | 'denied'
-      var banner = document.getElementById('cookieBanner');
-      if (!banner) return;
-
-      function applyConsent(state) {
-        if (typeof gtag === 'function') {
-          gtag('consent', 'update', {
-            'ad_storage': state,
-            'ad_user_data': state,
-            'ad_personalization': state,
-            'analytics_storage': state
-          });
-        }
-      }
-      function hideBanner() {
-        banner.classList.remove('visible');
-        document.body.classList.remove('cookie-banner-open');
-      }
-      function showBanner() {
-        banner.classList.add('visible');
-        document.body.classList.add('cookie-banner-open');
-      }
-
-      var saved = null;
-      try { saved = localStorage.getItem(KEY); } catch (e) {}
-
-      if (saved === 'granted' || saved === 'denied') {
-        applyConsent(saved);
-      } else {
-        showBanner();
-      }
-
-      document.getElementById('cookieAccept').addEventListener('click', function () {
-        try { localStorage.setItem(KEY, 'granted'); } catch (e) {}
-        applyConsent('granted');
-        hideBanner();
-      });
-      document.getElementById('cookieDecline').addEventListener('click', function () {
-        try { localStorage.setItem(KEY, 'denied'); } catch (e) {}
-        applyConsent('denied');
-        hideBanner();
-      });
-    })();
-  </script>
 </body>
 </html>

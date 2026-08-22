@@ -435,6 +435,20 @@ section { padding: 92px 0; }
   * { transition: none !important; }
 }
 
+/* --- Sichtbarer Tastatur-Fokus (Barrierefreiheit) ------ */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+/* Das Banner erhält beim Einblenden programmatisch den Fokus –
+   dabei soll kein Rahmen um den gesamten Balken erscheinen. */
+.cookie-banner:focus { outline: none; }
+.cookie-banner .btn:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
 /* --- Cookie-Consent-Banner (Google Ads Conversion-Tracking) --- */
 .cookie-banner {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 200;
