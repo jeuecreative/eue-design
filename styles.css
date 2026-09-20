@@ -357,104 +357,80 @@ section[id] { scroll-margin-top: 90px; }
 .projekt p { color: var(--muted); font-size: 16px; }
 
 /* =========================================================
-   Demo-Einbettung (Sektion #demo auf der Startseite)
-   Alle Klassen mit "df-" (df = Demo-Frame), nur Klassen-
-   selektoren, kein !important – kollidiert mit nichts.
-   Das Skript zur Skalierung sitzt in nav.js.
+   Demo (Sektion #demo auf der Startseite)
+   Gleiche Kartenlogik wie die echten Projekte, nur mit
+   Logokachel statt Screenshot und mit Demo-Kennzeichnung.
    ========================================================= */
-
-/* Eckdaten über der Vorschau */
-.demo-meta {
-  display: flex; flex-wrap: wrap; gap: 8px 32px;
-  list-style: none; margin: -24px 0 28px; padding: 0;
-  font-size: 14px; color: var(--muted);
-}
-.demo-meta b {
-  color: var(--ink); font-weight: 600;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  font-size: 12px; margin-right: 8px;
+.demo-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 360px) 1fr;
+  gap: 48px;
+  align-items: start;
 }
 
-.df {
-  --df-ink:       #15212E;   /* Studio-Schwarz = Marineblau der Seite */
-  --df-chrome:    #1B2B3C;   /* Browser-Leiste */
-  --df-line:      #33485E;   /* Trennlinie in der Leiste */
-  --df-tape:      #8CC7F1;   /* Demo-Kennung = Logo-Blau */
-  --df-tape-ink:  #15212E;
-  --df-paper:     #F4F8FC;
-  margin-block: clamp(24px, 4vw, 40px);
+.demo-card {
+  display: block;
+  border: 1px solid var(--divider); border-radius: 6px; overflow: hidden;
+  background: var(--paper); color: var(--ink);
+  transition: box-shadow .2s, transform .2s, border-color .2s;
+}
+.demo-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(21,33,46,0.09); border-color: var(--sky); color: var(--ink); }
+
+/* Quadratische Kachel in den Farben des Demo-Betriebs –
+   liest sich dadurch als fremde Marke, nicht als unsere. */
+.demo-card__tile {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
+  aspect-ratio: 1 / 1;
+  background: #1B3128;
+  background-image: radial-gradient(circle at 50% 38%, #2A4638 0%, #1B3128 68%);
+  text-align: center; padding: 24px;
+}
+.demo-card__flag {
+  position: absolute; top: 16px; right: 16px;
+  background: var(--sky); color: var(--ink);
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 4px 11px; border-radius: 2px;
+}
+.demo-card__mark { width: 68px; height: 68px; }
+.demo-card__logo { display: block; }
+.demo-card__name {
+  display: block; font-family: var(--font-display); font-weight: 700;
+  font-size: 22px; line-height: 1.2; color: #fff;
+}
+.demo-card__sub {
+  display: block; margin-top: 4px;
+  font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #C8A882;
 }
 
-/* Rahmen in Browser-Optik: signalisiert "Vorschau", nicht "unsere Seite" */
-.df__frame {
-  border-radius: 6px; overflow: hidden; background: var(--df-chrome);
-  box-shadow: 0 2px 4px rgba(21,33,46,.08), 0 24px 60px -30px rgba(21,33,46,.5);
+.demo-card__body { display: block; padding: 22px 26px 26px; }
+.demo-card__kind {
+  display: block; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); font-weight: 600;
 }
-.df__bar {
-  display: flex; align-items: center; gap: 12px;
-  padding: 11px 14px; background: var(--df-chrome);
-  border-bottom: 1px solid var(--df-line);
+.demo-card__title {
+  display: block; font-family: var(--font-display); font-weight: 700;
+  font-size: 20px; line-height: 1.25; margin: 8px 0 14px;
 }
-.df__dots { display: flex; gap: 6px; flex: none; }
-.df__dots i { width: 11px; height: 11px; border-radius: 50%; background: var(--df-line); }
-.df__url {
-  flex: 1; min-width: 0; background: var(--df-ink); border-radius: 4px;
-  padding: 6px 12px; font-size: 13px; color: #8FA6BC;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+.demo-card__link {
+  display: inline-flex; align-items: center; gap: .5em;
+  color: var(--accent); font-weight: 600; font-size: 16px;
 }
-.df__flag {
-  flex: none; background: var(--df-tape); color: var(--df-tape-ink);
-  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
-  padding: 5px 10px; border-radius: 2px;
-}
+.demo-card__arw { transition: transform .2s; }
+.demo-card:hover .demo-card__arw { transform: translateX(4px); }
 
-/* Das Fenster. Der iframe rendert intern in voller Desktop-Breite (1280px)
-   und wird herunterskaliert – sonst würde die Demo im schmalen Rahmen in
-   ihre Tablet-Ansicht springen und man sähe nie die echte Navigation.
-   1280x800 ist exakt 16:10, die Skalierung passt also bündig. */
-.df__window { position: relative; overflow: hidden; aspect-ratio: 16 / 10; background: var(--df-paper); }
-.df__iframe {
-  position: absolute; top: 0; left: 0; border: 0;
-  width: 1280px; height: 800px;
-  transform: scale(var(--df-scale, .78)); transform-origin: 0 0;
-  background: var(--df-paper);
+.demo-text p { color: #344656; font-size: 18px; margin-bottom: 20px; }
+.demo-text ul { list-style: none; margin-bottom: 20px; }
+.demo-text li {
+  font-size: 16px; color: var(--muted); padding: 7px 0;
+  display: flex; gap: 11px; align-items: flex-start;
 }
+.demo-text li::before { content: '→'; color: var(--sky); font-weight: 700; flex-shrink: 0; }
+.demo-text__note { font-size: 15px; color: var(--muted); }
 
-/* Mobil kein iframe: Scrollen im iframe ist auf Telefonen unzuverlässig,
-   deshalb dort eine Karte, die in einem neuen Tab öffnet. */
-.df__card { display: none; padding: clamp(26px,7vw,40px) clamp(20px,5vw,32px); background: var(--df-ink); text-align: left; }
-.df__card p { margin: 0 0 20px; color: #9FB4C8; font-size: 15px; line-height: 1.6; }
-.df__card strong { display: block; color: #fff; font-size: 18px; margin-bottom: 8px; font-weight: 700; font-family: var(--font-display); }
-
-/* Zeile unter dem Rahmen */
-.df__foot {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 12px 20px; flex-wrap: wrap; margin-top: 18px;
-}
-.df__note { font-size: 14px; color: var(--muted); max-width: 52ch; margin: 0; }
-.df__open {
-  display: inline-flex; align-items: center; gap: .5em; flex: none;
-  padding: 13px 26px; border-radius: 2px; border: 1.5px solid var(--accent);
-  background: var(--accent); color: #fff;
-  font-family: var(--font-body); font-size: 15px; font-weight: 500; letter-spacing: 0.02em;
-  transition: background .2s, border-color .2s, transform .2s;
-}
-.df__open:hover { background: var(--accent-d); border-color: var(--accent-d); color: #fff; transform: translateY(-2px); }
-.df__open .df__arw { transition: transform .2s; }
-.df__open:hover .df__arw { transform: translateX(3px); }
-.df__card .df__open { background: var(--sky); border-color: var(--sky); color: var(--ink); }
-.df__card .df__open:hover { background: #fff; border-color: #fff; color: var(--ink); }
-
-@media (max-width: 760px) {
-  .df__window { aspect-ratio: auto; }
-  .df__iframe { display: none; }
-  .df__card { display: block; position: static; }
-  .df__url { display: none; }
-  .df__foot { flex-direction: column; align-items: flex-start; }
-  /* Die Karte im Rahmen hat bereits einen Button – der zweite darunter wäre doppelt. */
-  .df__foot .df__open { display: none; }
-  .df__card .df__open { width: 100%; justify-content: center; }
+@media (max-width: 900px) {
+  .demo-grid { grid-template-columns: 1fr; gap: 32px; }
+  .demo-card { max-width: 360px; }
 }
 
 /* --- Kontakt CTA --------------------------------------- */

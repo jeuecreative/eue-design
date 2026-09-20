@@ -245,58 +245,41 @@
       <div class="section-head">
         <p class="eyebrow">Demo</p>
         <h2>Design-Demo: Maler Mustermann</h2>
-        <p>Ein Website-Entwurf für einen erfundenen Malerbetrieb aus der Region Wittlich – gebaut, um zu zeigen, wie ein Handwerksbetrieb online auftreten kann. Klick dich direkt in der Vorschau durch.</p>
+        <p>Ein Website-Entwurf für einen erfundenen Malerbetrieb aus der Region Wittlich – gebaut, um zu zeigen, wie ein Handwerksbetrieb online auftreten kann.</p>
       </div>
 
-      <ul class="demo-meta">
-        <li><b>Art</b> Konzept &amp; Gestaltung</li>
-        <li><b>Jahr</b> 2026</li>
-        <li><b>Status</b> Demo, kein realer Kunde</li>
-      </ul>
+      <div class="demo-grid">
 
-      <!-- Demo-Einbettung im Browser-Rahmen (Styles: styles.css, Skript: nav.js) -->
-      <div class="df">
-        <div class="df__frame">
+        <!-- Demo-Karte: quadratische Logokachel, darunter der Weg zur Demo -->
+        <a class="demo-card" href="demos/maler-mustermann/index.html" target="_blank" rel="noopener">
+          <span class="demo-card__tile">
+            <span class="demo-card__flag">Demo</span>
+            <svg class="demo-card__mark" viewBox="0 0 40 40" aria-hidden="true">
+              <rect width="40" height="40" rx="10" fill="#E2701E"/>
+              <path d="M11 25.5c0-5 3.9-9 9-14 5.1 5 9 9 9 14a9 9 0 1 1-18 0Z" fill="#1B3128"/>
+            </svg>
+            <span class="demo-card__logo">
+              <span class="demo-card__name">Maler Mustermann</span>
+              <span class="demo-card__sub">Beispielbetrieb</span>
+            </span>
+          </span>
+          <span class="demo-card__body">
+            <span class="demo-card__kind">Design-Demo · Fiktiver Betrieb</span>
+            <span class="demo-card__title">Website für einen Malerbetrieb</span>
+            <span class="demo-card__link">Demo ansehen <span class="demo-card__arw" aria-hidden="true">→</span></span>
+          </span>
+        </a>
 
-          <div class="df__bar">
-            <span class="df__dots" aria-hidden="true"><i></i><i></i><i></i></span>
-            <span class="df__url">eue-design.de/demos/maler-mustermann/</span>
-            <span class="df__flag">Demo</span>
-          </div>
-
-          <div class="df__window">
-            <!-- Live-Vorschau von der eigenen Domain: kein Fremd-Request, keine Einwilligung nötig. -->
-            <iframe
-              class="df__iframe"
-              src="demos/maler-mustermann/index.html"
-              title="Vorschau der Design-Demo Maler Mustermann"
-              loading="lazy"
-              referrerpolicy="same-origin"></iframe>
-
-            <!-- Ersatz auf schmalen Bildschirmen -->
-            <div class="df__card">
-              <p>
-                <strong>Vorschau auf dem Telefon</strong>
-                Die Demo ist eine vollständige Website – im kleinen Rahmen lässt sie sich
-                schlecht bedienen. Besser in einem eigenen Tab ansehen.
-              </p>
-              <a class="df__open" href="demos/maler-mustermann/index.html" target="_blank" rel="noopener">
-                Demo öffnen <span class="df__arw" aria-hidden="true">→</span>
-              </a>
-            </div>
-          </div>
-
+        <div class="demo-text">
+          <p>Nicht jeder Betrieb hat schon eine Website, an der wir zeigen können, wie wir arbeiten. Deshalb haben wir eine gebaut: <b>Maler Mustermann</b>, ein erfundener Malerbetrieb aus der Region Wittlich – vollständig umgesetzt, vom Farbkonzept bis zum Kontaktformular.</p>
+          <ul>
+            <li>Aufbau einer kompletten One-Page-Website für einen Handwerksbetrieb</li>
+            <li>Interaktiver Farbwähler, Leistungen, Ablauf und Kontakt</li>
+            <li>Mobil optimiert, ohne externe Dienste, ohne Cookies</li>
+          </ul>
+          <p class="demo-text__note">Betrieb, Texte, Zahlen, Referenzen und Kontaktdaten sind frei erfunden – gezeigt wird ausschließlich die Gestaltung. Die Demo öffnet in einem neuen Tab.</p>
         </div>
 
-        <div class="df__foot">
-          <p class="df__note">
-            Fiktiver Betrieb. Texte, Zahlen, Referenzen und Kontaktdaten sind erfunden –
-            gezeigt wird ausschließlich die Gestaltung.
-          </p>
-          <a class="df__open" href="demos/maler-mustermann/index.html" target="_blank" rel="noopener">
-            In neuem Tab öffnen <span class="df__arw" aria-hidden="true">→</span>
-          </a>
-        </div>
       </div>
     </div>
   </section>
