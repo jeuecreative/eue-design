@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Maler Mustermann – Design-Demo eines Malerbetriebs | Eue Design</title>
+<meta name="description" content="Design-Demo von Eue Design: Website-Entwurf für einen fiktiven Malerbetrieb in der Region Wittlich. Betrieb, Texte, Zahlen und Kontaktdaten sind erfunden.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="author" content="Eue Design">
+<meta name="theme-color" content="#14181A">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Maler Mustermann – Design-Demo">
+<meta property="og:description" content="Website-Entwurf für einen erfundenen Malerbetrieb. Referenzprojekt von Eue Design.">
+<meta property="og:locale" content="de_DE">
+<!--
+  ===========================================================================
+  SCHRIFTEN – selbst gehostet, keine externen Requests
+  ===========================================================================
+  Diese Seite lädt NICHTS von fremden Servern. Damit die Gestaltung so
+  aussieht wie vorgesehen, zwei Variable-Font-Dateien neben die HTML legen:
+
+      maler-mustermann-demo.html
+      fonts/
+        fraunces-variable.woff2
+        instrument-sans-variable.woff2
+
+  Bezugsquelle (beide Schriften stehen unter der SIL Open Font License):
+
+    npm i @fontsource-variable/fraunces @fontsource-variable/instrument-sans
+
+    node_modules/@fontsource-variable/fraunces/files/
+        fraunces-latin-full-normal.woff2        -> fonts/fraunces-variable.woff2
+    node_modules/@fontsource-variable/instrument-sans/files/
+        instrument-sans-latin-wght-normal.woff2 -> fonts/instrument-sans-variable.woff2
+
+  WICHTIG bei Fraunces: die "-full-" Datei nehmen, nicht die "-wght-" Datei.
+  Nur die volle Variante enthält die Achsen SOFT und WONK, die das Layout
+  für die Überschriften benutzt.
+
+  Ohne die Dateien fällt die Seite sauber auf System-Schriften zurück –
+  sie bleibt lesbar und vollständig, wirkt nur neutraler.
+  ===========================================================================
+-->
+
+<style>
+/* ---------- 0. Schriften (lokal, kein CDN) ---------- */
+@font-face{
+  font-family:"Fraunces";
+  src:url("fonts/fraunces-variable.woff2") format("woff2");
+  font-weight:300 700;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:"Instrument Sans";
+  src:url("fonts/instrument-sans-variable.woff2") format("woff2");
+  font-weight:400 600;
+  font-style:normal;
+  font-display:swap;
+}
+
+/* =========================================================
+   MALER MUSTERMANN – Design-Demo
+   Eue Design · Farbwelt: Tannengrün / Terrakotta
+   Die Demo-Ebene (Studio-Balken, Krepp-Marker, Studio-Sektion)
+   liegt bewusst wie Malerkrepp über dem Entwurf.
+   ========================================================= */
+
+/* ---------- 1. Tokens ---------- */
+:root{
+  --ink:        #12211B;
+  --ink-soft:   #3E5147;
+  --muted:      #6E7E75;
+  --chalk:      #EEF0EA;
+  --chalk-warm: #E4E7DE;
+  --line:       #D3D9CE;
+  --paper:      #FFFFFF;
+
+  --green:      #2C4A3B;
+  --green-deep: #1B3128;
+  --sage:       #C6D3C4;
+
+  --orange:     #E2701E;
+  --orange-deep:#B4540F;
+
+  --wall:       #2C4A3B;   /* wird per JS getauscht */
+
+  /* Demo-Ebene: Studio + Malerkrepp */
+  --studio:     #14181A;
+  --studio-up:  #1E2427;
+  --studio-txt: #B8C4BE;
+  --tape:       #E7C98C;
+  --tape-2:     #DBBC7A;
+  --tape-ink:   #463516;
+  --crepe: repeating-linear-gradient(94deg, rgba(70,53,22,.07) 0 1px, transparent 1px 5px);
+
+  /* Fallbacks greifen, solange die woff2-Dateien nicht hinterlegt sind */
+  --f-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --f-body:    "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --pad:  clamp(20px, 5vw, 64px);
+  --gap:  clamp(20px, 3vw, 36px);
+  --sec:  clamp(72px, 11vw, 148px);
+  --max:  1240px;
+
+  --r:    14px;
+  --shadow: 0 1px 2px rgba(18,33,27,.05), 0 18px 40px -24px rgba(18,33,27,.34);
+
+  --plaster: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
+}
+
+/* ---------- 2. Basis ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--chalk); color:var(--ink);
+  font-family:var(--f-body); font-size:17px; line-height:1.65;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+img{max-width:100%; display:block}
+a{color:inherit}
+button{font:inherit; cursor:pointer}
+:focus-visible{outline:2.5px solid var(--orange); outline-offset:3px; border-radius:4px}
+
+h1,h2,h3{
+  font-family:var(--f-display); font-weight:400;
+  font-variation-settings:"SOFT" 45,"WONK" 1;
+  line-height:1.03; letter-spacing:-.022em; margin:0;
+  text-wrap:balance;
+}
+h1{font-size:clamp(2.9rem, 7.6vw, 5.6rem)}
+h2{font-size:clamp(2.1rem, 4.4vw, 3.5rem)}
+h3{font-size:1.22rem; line-height:1.25; letter-spacing:-.01em}
+p{margin:0}
+
+.wrap{max-width:var(--max); margin-inline:auto; padding-inline:var(--pad)}
+.section{padding-block:var(--sec)}
+
+.eyebrow{
+  font-size:.72rem; font-weight:600; text-transform:uppercase;
+  letter-spacing:.19em; color:var(--orange-deep);
+  display:flex; align-items:center; gap:.7em;
+}
+.eyebrow::before{content:""; width:26px; height:2px; background:var(--orange); flex:none}
+.lead{font-size:clamp(1.06rem,1.6vw,1.22rem); color:var(--ink-soft); max-width:56ch}
+
+/* ---------- 3. Buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; gap:.6em;
+  padding:15px 27px; border-radius:999px; border:1.5px solid transparent;
+  font-size:.95rem; font-weight:600; letter-spacing:.005em;
+  text-decoration:none; transition:transform .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn--primary{background:var(--orange); color:#fff}
+.btn--primary:hover{background:var(--orange-deep)}
+.btn--ghost{border-color:rgba(255,255,255,.45); color:#fff}
+.btn--ghost:hover{background:rgba(255,255,255,.12); border-color:#fff}
+.btn--dark{background:var(--green); color:#fff}
+.btn--dark:hover{background:var(--green-deep)}
+.btn--tape{background:var(--tape); color:var(--tape-ink)}
+.btn--tape:hover{background:#F2D69C}
+.btn--outline{border-color:var(--line); color:var(--ink); background:var(--paper)}
+.btn--outline:hover{border-color:var(--green); color:var(--green)}
+.btn .arw{transition:transform .18s ease}
+.btn:hover .arw{transform:translateX(4px)}
+
+/* ---------- 4. Demo-Ebene: Krepp-Marker ---------- */
+.tape{
+  display:inline-flex; align-items:center; gap:.55em;
+  background-color:var(--tape); background-image:var(--crepe);
+  color:var(--tape-ink);
+  font-size:.64rem; font-weight:600; text-transform:uppercase; letter-spacing:.16em;
+  line-height:1; padding:7px 13px 8px;
+  clip-path:polygon(1.5% 6%, 99% 0%, 100% 94%, 0% 100%);
+  box-shadow:0 1px 1px rgba(18,33,27,.14);
+}
+.tape--dot::before{content:""; width:5px; height:5px; border-radius:50%; background:var(--tape-ink); flex:none}
+
+/* Studio-Balken + Navigation bleiben zusammen oben kleben */
+.topstack{position:sticky; top:env(safe-area-inset-top, 0px); z-index:60}
+
+.studiobar{background:var(--studio); color:var(--studio-txt); padding-block:9px}
+.studiobar .wrap{display:flex; align-items:center; gap:8px 20px; flex-wrap:wrap}
+.studiobar__txt{font-size:.76rem; line-height:1.4}
+.studiobar__txt b{color:#fff; font-weight:600}
+.studiobar__by{
+  margin-left:auto; font-size:.66rem; text-transform:uppercase; letter-spacing:.2em;
+  color:#7F8D86; white-space:nowrap;
+}
+.studiobar__by b{color:#fff; font-weight:600; letter-spacing:.14em}
+
+/* ---------- 5. Navigation ---------- */
+.nav{
+  position:relative;
+  background:rgba(238,240,234,.92); backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent; transition:border-color .3s ease;
+}
+.nav.is-stuck{border-bottom-color:var(--line)}
+.nav .wrap{display:flex; align-items:center; gap:clamp(14px,2vw,28px); min-height:72px}
+
+.brand{display:flex; align-items:center; gap:11px; text-decoration:none}
+.brand__mark{width:34px; height:34px; flex:none}
+.brand__txt{display:flex; flex-direction:column; line-height:1}
+.brand__name{font-family:var(--f-display); font-size:1.14rem; font-weight:600; letter-spacing:-.015em; white-space:nowrap}
+.brand__sub{font-size:.63rem; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-top:4px}
+.nav .tape{margin-right:auto; transform:rotate(-1.5deg)}
+
+.nav__links{display:flex; gap:clamp(16px,1.8vw,26px); list-style:none; margin:0; padding:0}
+.nav__links a{
+  text-decoration:none; font-size:.93rem; font-weight:500; color:var(--ink-soft);
+  padding-block:6px; position:relative; white-space:nowrap;
+}
+.nav__links a::after{
+  content:""; position:absolute; left:0; right:100%; bottom:0; height:1.5px;
+  background:var(--orange); transition:right .25s ease;
+}
+.nav__links a:hover{color:var(--ink)}
+.nav__links a:hover::after{right:0}
+.nav .btn{padding:12px 22px}
+
+.burger{
+  display:none; width:44px; height:44px; border:1px solid var(--line);
+  border-radius:10px; background:var(--paper); align-items:center; justify-content:center;
+}
+.burger span{display:block; width:17px; height:1.5px; background:var(--ink); position:relative}
+.burger span::before,.burger span::after{content:""; position:absolute; left:0; width:17px; height:1.5px; background:var(--ink)}
+.burger span::before{top:-5px} .burger span::after{top:5px}
+
+/* ---------- 6. Hero: die Wand ---------- */
+.hero{
+  position:relative; background:var(--wall); color:#fff; overflow:hidden;
+  transition:background-color .75s cubic-bezier(.4,0,.2,1);
+}
+.hero::after{ /* Putzstruktur */
+  content:""; position:absolute; inset:0; background-image:var(--plaster);
+  opacity:.16; mix-blend-mode:overlay; pointer-events:none;
+}
+.hero::before{ /* Streiflicht */
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(120% 80% at 78% 8%, rgba(255,255,255,.13), transparent 60%),
+    linear-gradient(to bottom, rgba(0,0,0,.05), rgba(0,0,0,.22));
+}
+.hero .wrap{position:relative; z-index:2; padding-block:clamp(56px,9vw,104px) 0}
+.hero__top{display:flex; align-items:center; gap:14px 20px; flex-wrap:wrap}
+.hero .eyebrow{color:rgba(255,255,255,.82)}
+.hero .eyebrow::before{background:var(--orange)}
+.hero h1{margin-top:22px; max-width:14ch; font-variation-settings:"SOFT" 30,"WONK" 1}
+.hero h1 em{font-style:normal; color:#F6C79C}
+.hero__sub{
+  margin-top:26px; max-width:47ch; font-size:clamp(1.04rem,1.7vw,1.24rem);
+  color:rgba(255,255,255,.86);
+}
+.hero__cta{display:flex; flex-wrap:wrap; gap:14px; margin-top:38px}
+
+/* Farbwähler – das Signature-Element */
+.picker{
+  margin-top:clamp(44px,6vw,78px); padding:22px 0 clamp(30px,4vw,42px);
+  border-top:1px solid rgba(255,255,255,.22);
+  display:flex; align-items:center; gap:22px 30px; flex-wrap:wrap;
+}
+.picker__label{
+  font-size:.72rem; text-transform:uppercase; letter-spacing:.19em;
+  color:rgba(255,255,255,.7); max-width:15ch; line-height:1.5;
+}
+.picker__row{display:flex; gap:10px; flex-wrap:wrap; margin-right:auto}
+.chip{
+  width:58px; height:58px; border-radius:12px; border:2px solid rgba(255,255,255,.28);
+  padding:0; position:relative; transition:transform .2s ease, border-color .2s ease;
+  background-image:var(--plaster); background-blend-mode:overlay;
+}
+.chip:hover{transform:translateY(-4px)}
+.chip[aria-pressed="true"]{border-color:#fff; transform:translateY(-4px)}
+.chip[aria-pressed="true"]::after{
+  content:""; position:absolute; inset:auto 0 -13px 0; margin-inline:auto;
+  width:5px; height:5px; border-radius:50%; background:#fff;
+}
+.picker__name{
+  font-family:var(--f-display); font-size:1.02rem; color:#fff; min-width:9ch;
+  border-left:1px solid rgba(255,255,255,.22); padding-left:22px;
+}
+.picker__name small{display:block; font-family:var(--f-body); font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.6); margin-bottom:3px}
+
+/* ---------- 7. Vertrauensleiste ---------- */
+.trust{background:var(--paper); border-bottom:1px solid var(--line)}
+.trust__grid{display:grid; grid-template-columns:repeat(4,1fr)}
+.trust__item{padding:30px var(--gap) 30px 0; display:flex; gap:13px; align-items:flex-start}
+.trust__item + .trust__item{border-left:1px solid var(--line); padding-left:var(--gap)}
+.trust__item svg{flex:none; margin-top:2px; color:var(--orange)}
+.trust__item b{display:block; font-size:.98rem; font-weight:600}
+.trust__item span{font-size:.87rem; color:var(--muted); line-height:1.5}
+
+/* ---------- 8. Leistungen ---------- */
+.head{display:grid; grid-template-columns:1.05fr .95fr; gap:var(--gap); align-items:end; margin-bottom:clamp(38px,5vw,62px)}
+.head h2{margin-top:20px}
+.head .lead{padding-bottom:8px}
+.head__tape{margin-top:16px}
+
+.cards{display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap)}
+.card{
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--r);
+  padding:32px 30px 30px; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.card:hover{transform:translateY(-5px); box-shadow:var(--shadow); border-color:transparent}
+.card__ico{
+  width:52px; height:52px; border-radius:12px; background:var(--chalk-warm);
+  display:grid; place-items:center; color:var(--green); margin-bottom:22px;
+  transition:background .25s ease, color .25s ease;
+}
+.card:hover .card__ico{background:var(--green); color:#fff}
+.card p{margin-top:11px; font-size:.95rem; color:var(--ink-soft); line-height:1.62}
+
+/* ---------- 9. Über uns ---------- */
+.about{background:var(--paper); border-block:1px solid var(--line)}
+.about__grid{display:grid; grid-template-columns:.95fr 1.05fr; gap:clamp(36px,5vw,74px); align-items:center}
+.about__txt h2{margin:20px 0 22px}
+.about__txt p + p{margin-top:16px}
+.about__sign{margin-top:30px; font-family:var(--f-display); font-size:1.06rem; color:var(--green)}
+.about__sign small{display:block; font-family:var(--f-body); font-size:.78rem; color:var(--muted); letter-spacing:.02em}
+
+.stats{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
+  margin-top:34px; padding-top:30px; border-top:1px solid var(--line);
+}
+.stats b{display:block; font-family:var(--f-display); font-size:clamp(1.9rem,3.4vw,2.5rem); color:var(--green); line-height:1}
+.stats span{font-size:.83rem; color:var(--muted); display:block; margin-top:7px; line-height:1.45}
+.stats__head{display:flex; align-items:center; gap:12px; margin-top:34px; padding-top:30px; border-top:1px solid var(--line)}
+.stats__head + .stats{margin-top:22px; padding-top:0; border-top:0}
+
+/* Bildplatz / Farbfläche */
+.plate{position:relative; border-radius:var(--r); overflow:hidden; box-shadow:var(--shadow)}
+.plate__fill{aspect-ratio:4/5; max-width:100%; background:var(--green); position:relative}
+.plate__fill::after{content:""; position:absolute; inset:0; background-image:var(--plaster); opacity:.2; mix-blend-mode:overlay}
+.plate__fill::before{content:""; position:absolute; inset:0; background:linear-gradient(150deg, rgba(255,255,255,.14), transparent 55%)}
+.plate .tape{position:absolute; left:16px; bottom:16px; z-index:2}
+.plate__band{
+  position:absolute; right:0; top:14%; z-index:2; height:34%; width:34%;
+  background:var(--orange); mix-blend-mode:multiply; opacity:.9;
+}
+
+/* ---------- 10. Projekte ---------- */
+.projects{display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap)}
+.proj .plate__fill{aspect-ratio:5/4; transition:transform .4s ease}
+.proj:hover .plate__fill{transform:scale(1.035)}
+.proj__meta{display:flex; align-items:baseline; justify-content:space-between; gap:14px; margin-top:16px}
+.proj__meta h3{font-size:1.08rem}
+.proj__meta span{font-size:.78rem; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; flex:none}
+.proj__dots{display:flex; gap:6px; margin-top:12px}
+.proj__dots i{width:15px; height:15px; border-radius:50%; border:1px solid rgba(18,33,27,.12)}
+
+/* ---------- 11. Ablauf ---------- */
+.flow{background:var(--green); color:#fff; position:relative; overflow:hidden}
+.flow::after{content:""; position:absolute; inset:0; background-image:var(--plaster); opacity:.13; mix-blend-mode:overlay; pointer-events:none}
+.flow .wrap{position:relative; z-index:2}
+.flow .eyebrow{color:#F6C79C}
+.flow h2{margin-top:20px; max-width:18ch}
+.steps{display:grid; grid-template-columns:repeat(5,1fr); gap:var(--gap); margin-top:clamp(42px,5vw,66px)}
+.step{padding-top:24px; border-top:1px solid rgba(255,255,255,.24)}
+.step b{
+  font-family:var(--f-display); font-size:.9rem; color:#F6C79C;
+  display:block; margin-bottom:14px; letter-spacing:.05em;
+}
+.step h3{font-size:1.05rem; color:#fff}
+.step p{margin-top:9px; font-size:.9rem; color:rgba(255,255,255,.76); line-height:1.58}
+
+/* ---------- 12. Abschluss-CTA ---------- */
+.final{background:var(--paper)}
+.final__box{
+  border:1px solid var(--line); border-radius:var(--r); overflow:hidden;
+  display:grid; grid-template-columns:1.15fr .85fr;
+}
+.final__l{padding:clamp(38px,5vw,66px)}
+.final__l h2{margin:18px 0 18px}
+.final__l .btn{margin-top:14px}
+.final__note{margin-top:18px; font-size:.85rem; color:var(--muted)}
+.final__r{background:var(--orange); position:relative; min-height:260px}
+.final__r::after{content:""; position:absolute; inset:0; background-image:var(--plaster); opacity:.2; mix-blend-mode:overlay}
+.final__r::before{
+  content:""; position:absolute; left:0; top:0; bottom:0; width:38%;
+  background:var(--green); mix-blend-mode:multiply;
+}
+
+/* ---------- 13. Kontakt ---------- */
+.contact__grid{display:grid; grid-template-columns:.85fr 1.15fr; gap:clamp(36px,5vw,74px)}
+.info{list-style:none; margin:26px 0 0; padding:0}
+.info li{display:flex; gap:14px; padding:17px 0; border-top:1px solid var(--line)}
+.info svg{flex:none; margin-top:3px; color:var(--orange)}
+.info b{display:block; font-size:.73rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); font-weight:600}
+.info span{font-size:1rem}
+
+.form{background:var(--paper); border:1px solid var(--line); border-radius:var(--r); padding:clamp(26px,3.4vw,40px)}
+.form__top{display:flex; justify-content:flex-end; margin-bottom:18px}
+.form__row{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+.field{display:block; margin-bottom:16px}
+.field span{display:block; font-size:.79rem; font-weight:600; letter-spacing:.05em; margin-bottom:7px; color:var(--ink-soft)}
+.field input,.field select,.field textarea{
+  width:100%; padding:13px 15px; border:1px solid var(--line); border-radius:9px;
+  font:inherit; font-size:.95rem; background:var(--chalk); color:var(--ink);
+  transition:border-color .2s ease, background .2s ease;
+}
+.field textarea{resize:vertical; min-height:118px}
+.field input:focus,.field select:focus,.field textarea:focus{background:var(--paper); border-color:var(--green); outline:none}
+.form .btn{width:100%; justify-content:center; margin-top:6px}
+.form__hint{font-size:.82rem; color:var(--muted); margin-top:14px; text-align:center}
+
+/* ---------- 14. Studio-Sektion (Eue Design) ---------- */
+.studio{background:var(--studio); color:var(--studio-txt); position:relative; overflow:hidden}
+.studio::after{content:""; position:absolute; inset:0; background-image:var(--plaster); opacity:.1; mix-blend-mode:overlay; pointer-events:none}
+.studio .wrap{position:relative; z-index:2}
+.studio__grid{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(40px,6vw,86px)}
+.studio h2{color:#fff; margin:18px 0 22px; max-width:17ch}
+.studio p{font-size:1.02rem; line-height:1.68; max-width:52ch}
+.studio p + p{margin-top:15px}
+
+.ledger{display:grid; gap:26px; align-content:start}
+.ledger__block h3{
+  font-family:var(--f-body); font-size:.7rem; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase; color:#7F8D86; margin-bottom:14px;
+}
+.ledger ul{list-style:none; margin:0; padding:0; display:grid; gap:1px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.1); border-radius:10px; overflow:hidden}
+.ledger li{display:flex; gap:12px; align-items:flex-start; padding:14px 16px; background:var(--studio-up); font-size:.93rem; line-height:1.5}
+.ledger li svg{flex:none; margin-top:3px}
+.ledger--real li svg{color:#8FD4A8}
+.ledger--fake li svg{color:var(--tape)}
+.ledger li b{color:#fff; font-weight:600; display:block}
+.ledger li span{color:#93A09A; font-size:.86rem}
+
+.credit{
+  margin-top:clamp(32px,4vw,44px); padding-top:26px;
+  border-top:1px solid rgba(255,255,255,.14);
+  display:flex; gap:20px 26px; align-items:center; flex-wrap:wrap;
+}
+.credit__mark{width:46px; height:46px; flex:none}
+.credit__txt b{display:block; color:#fff; font-family:var(--f-display); font-size:1.14rem; font-weight:600}
+.credit__txt span{font-size:.86rem; color:#93A09A}
+.credit .btn{margin-left:auto}
+
+/* ---------- 15. Footer ---------- */
+.footer{background:var(--green-deep); color:#B9CCBE; padding-block:clamp(46px,6vw,70px) 30px}
+.footer .brand__name{color:#fff}
+.footer .brand__sub{color:#8FA896}
+.footer__top{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:var(--gap); padding-bottom:38px; border-bottom:1px solid rgba(255,255,255,.13)}
+.footer p{font-size:.9rem; margin-top:18px; max-width:34ch; line-height:1.6}
+.footer h4{font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:#8FA896; margin:0 0 16px; font-weight:600}
+.footer ul{list-style:none; margin:0; padding:0; display:grid; gap:10px; font-size:.92rem}
+.footer a{text-decoration:none}
+.footer a:hover{color:#fff}
+.footer__legal{
+  margin-top:24px; padding:14px 16px; border-radius:10px;
+  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1);
+  font-size:.84rem; line-height:1.55; color:#A6BCAC; max-width:44ch;
+}
+.footer__legal b{color:#fff; font-weight:600}
+.footer__legal-link{color:#fff; text-decoration:underline; text-underline-offset:2px}
+.footer__legal-link:hover{text-decoration-thickness:2px}
+.footer__bot{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; padding-top:24px; font-size:.8rem; color:#8FA896}
+.footer__bot b{color:#fff; font-weight:600}
+
+/* ---------- 16. Motion ---------- */
+.reveal{opacity:0; transform:translateY(22px)}
+.reveal.in{opacity:1; transform:none; transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.3,1)}
+
+/* ---------- 17. Responsive ---------- */
+@media (max-width:1060px){
+  .nav__links,.nav .btn{display:none}
+  .burger{display:flex; margin-left:auto}
+  .nav .tape{margin-right:0}
+}
+@media (max-width:1000px){
+  .head,.about__grid,.contact__grid,.final__box,.studio__grid{grid-template-columns:1fr}
+  .cards,.projects{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .trust__grid{grid-template-columns:repeat(2,1fr)}
+  .trust__item{padding:24px 0}
+  .trust__item:nth-child(2n){border-left:1px solid var(--line); padding-left:var(--gap)}
+  .trust__item:nth-child(n+3){border-top:1px solid var(--line)}
+  .about__grid .plate{order:-1; max-width:520px}
+  .final__r{min-height:180px}
+  .footer__top{grid-template-columns:1fr 1fr}
+  .footer__top > div:first-child{grid-column:1/-1}
+}
+@media (max-width:720px){
+  body{font-size:16px}
+  .studiobar__long{display:none}
+  .studiobar .wrap{gap:6px 14px}
+  .studiobar__txt{font-size:.72rem}
+  .studiobar__by{margin-left:0; font-size:.6rem}
+  .nav .tape{font-size:.58rem; padding:6px 10px 7px}
+  .nav.is-open .nav__links{
+    display:grid; position:absolute; left:0; right:0; top:100%;
+    background:var(--paper); border-bottom:1px solid var(--line);
+    padding:14px var(--pad) 26px; gap:2px;
+  }
+  .nav.is-open .nav__links a{display:block; padding:13px 0; border-bottom:1px solid var(--line); font-size:1.02rem}
+  .cards,.projects,.steps,.stats,.form__row{grid-template-columns:1fr}
+  .stats{gap:22px}
+  .trust__grid{grid-template-columns:1fr}
+  .trust__item:nth-child(n){border-left:0; padding-left:0; border-top:1px solid var(--line)}
+  .trust__item:first-child{border-top:0}
+  .picker{flex-direction:column; align-items:flex-start; gap:18px}
+  .picker__name{border-left:0; padding-left:0; border-top:1px solid rgba(255,255,255,.22); padding-top:14px; width:100%}
+  .chip{width:50px; height:50px}
+  .hero__cta .btn{flex:1 1 100%; justify-content:center}
+  .footer__top{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important; transition-duration:.01ms!important}
+  .reveal{opacity:1; transform:none}
+}
+</style>
+</head>
+<body>
+<!-- ============ Kopf: Demo-Balken + Navigation, bleiben beim Scrollen oben ============ -->
+<div class="topstack">
+
+<div class="studiobar">
+  <div class="wrap">
+    <span class="tape tape--dot">Demoprojekt</span>
+    <p class="studiobar__txt">
+      <b>Maler Mustermann gibt es nicht.</b><span class="studiobar__long">
+      Betrieb, Texte, Zahlen, Referenzen und Kontaktdaten sind frei erfunden – gezeigt wird ausschließlich die Gestaltung.</span>
+    </p>
+    <span class="studiobar__by">Referenzprojekt von <b>Eue&nbsp;Design</b></span>
+  </div>
+</div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Maler Mustermann – zur Startseite">
+      <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true">
+        <rect width="40" height="40" rx="10" fill="#2C4A3B"/>
+        <path d="M11 25.5c0-5 3.9-9 9-14 5.1 5 9 9 9 14a9 9 0 1 1-18 0Z" fill="#E2701E"/>
+        <path d="M20 11.5c5.1 5 9 9 9 14a9 9 0 0 1-9 9V11.5Z" fill="#F6C79C" opacity=".55"/>
+      </svg>
+      <span class="brand__txt">
+        <span class="brand__name">Maler Mustermann</span>
+        <span class="brand__sub">Beispielbetrieb</span>
+      </span>
+    </a>
+
+    <span class="tape">Demo</span>
+
+    <nav aria-label="Hauptnavigation">
+      <ul class="nav__links" id="menu">
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#ueber-uns">Über uns</a></li>
+        <li><a href="#projekte">Projekte</a></li>
+        <li><a href="#ablauf">Ablauf</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="#demo">Die Demo</a></li>
+      </ul>
+    </nav>
+
+    <a class="btn btn--dark" href="#kontakt">Beratung anfragen</a>
+
+    <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menu"><span></span></button>
+  </div>
+</header>
+
+</div><!-- /topstack -->
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero__top">
+      <p class="eyebrow">Malerbetrieb · Region Wittlich</p>
+      <span class="tape">Beispielinhalt</span>
+    </div>
+
+    <h1>Ihr Zuhause in der <em>richtigen</em> Farbe.</h1>
+
+    <p class="hero__sub">
+      Familienbetrieb mit drei Meistern. Wir streichen Innenräume, Fassaden und alles
+      dazwischen – sauber abgeklebt, pünktlich fertig, besenrein übergeben.
+    </p>
+
+    <div class="hero__cta">
+      <a class="btn btn--primary" href="#kontakt">Kostenlose Beratung anfragen <span class="arw" aria-hidden="true">→</span></a>
+      <a class="btn btn--ghost" href="#demo">Was ist das hier?</a>
+    </div>
+
+    <!-- Signature-Element: die Wand wechselt die Farbe -->
+    <div class="picker">
+      <p class="picker__label" id="picker-label">Wandfarbe ausprobieren</p>
+      <div class="picker__row" role="group" aria-labelledby="picker-label" id="chips">
+        <button class="chip" style="background-color:#2C4A3B" data-color="#2C4A3B" data-name="Tannengrün" data-code="MM 04" aria-pressed="true" aria-label="Wandfarbe Tannengrün"></button>
+        <button class="chip" style="background-color:#4A6B3F" data-color="#4A6B3F" data-name="Moosgrün"   data-code="MM 11" aria-pressed="false" aria-label="Wandfarbe Moosgrün"></button>
+        <button class="chip" style="background-color:#4F6E5C" data-color="#4F6E5C" data-name="Salbei"     data-code="MM 18" aria-pressed="false" aria-label="Wandfarbe Salbei"></button>
+        <button class="chip" style="background-color:#8A6A4F" data-color="#8A6A4F" data-name="Lehm"       data-code="MM 27" aria-pressed="false" aria-label="Wandfarbe Lehm"></button>
+        <button class="chip" style="background-color:#B4541F" data-color="#B4541F" data-name="Terrakotta" data-code="MM 33" aria-pressed="false" aria-label="Wandfarbe Terrakotta"></button>
+        <button class="chip" style="background-color:#3A4247" data-color="#3A4247" data-name="Schiefer"   data-code="MM 41" aria-pressed="false" aria-label="Wandfarbe Schiefer"></button>
+      </div>
+      <p class="picker__name" aria-live="polite"><small id="c-code">MM 04</small><span id="c-name">Tannengrün</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VERTRAUEN ============ -->
+<section class="trust">
+  <div class="wrap">
+    <div class="trust__grid">
+      <div class="trust__item">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3 4 6.5v5c0 4.6 3.3 8.5 8 9.5 4.7-1 8-4.9 8-9.5v-5L12 3Z"/><path d="m9 12 2 2 4-4"/></svg>
+        <div><b>Drei Meister im Betrieb</b><span>Jede Baustelle wird von einem Meister geführt.</span></div>
+      </div>
+      <div class="trust__item">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="M8 3v4M16 3v4M4 10h16"/></svg>
+        <div><b>Festpreis vorab</b><span>Angebot nach Vor-Ort-Termin. Ohne Nachträge.</span></div>
+      </div>
+      <div class="trust__item">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <div><b>Termin steht</b><span>Wir sagen, wann wir kommen – und kommen dann.</span></div>
+      </div>
+      <div class="trust__item">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 20h14"/><path d="M9 20V9l3-5 3 5v11"/><path d="M9 12h6"/></svg>
+        <div><b>Besenrein übergeben</b><span>Möbel abgedeckt, Kanten sauber, Baustelle gefegt.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LEISTUNGEN ============ -->
+<section class="section" id="leistungen">
+  <div class="wrap">
+    <div class="head reveal">
+      <div>
+        <p class="eyebrow">Leistungen</p>
+        <h2>Alles, was ein Maler kann.</h2>
+        <p class="head__tape"><span class="tape">Beispiel-Leistungen</span></p>
+      </div>
+      <p class="lead">Vom einzelnen Zimmer bis zur kompletten Fassade. Für Privathaushalte in Wittlich und Umgebung – auch für kleine Aufträge.</p>
+    </div>
+
+    <div class="cards">
+      <article class="card reveal">
+        <div class="card__ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="4" width="13" height="6" rx="1.5"/><path d="M16 7h3a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-6"/><path d="M13 11v3h-2v7h2"/></svg></div>
+        <h3>Innenanstrich</h3>
+        <p>Wände und Decken in Wunschfarbe. Möbel abgedeckt, Kanten scharf, meist an einem Tag fertig.</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 3h14v14a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V3Z"/><path d="M5 8h14M12 8v13"/></svg></div>
+        <h3>Tapezieren</h3>
+        <p>Alte Tapete runter, neue drauf. Raufaser, Vlies oder Mustertapete – auch an schwierigen Übergängen.</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5.5 9.6V20h13V9.6"/><path d="M10 20v-5h4v5"/></svg></div>
+        <h3>Fassade &amp; Außenanstrich</h3>
+        <p>Reinigen, Risse ausbessern, streichen. Wetterfest beschichtet für die nächsten Jahre.</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 3h8v7l-2 2v9h-4v-9L8 10V3Z"/><path d="M8 6h8"/></svg></div>
+        <h3>Lackierarbeiten</h3>
+        <p>Türen, Zargen, Fenster, Treppen und Heizkörper. Glatte Oberfläche, keine Pinselstreifen.</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 14 14 4l6 6L10 20H4v-6Z"/><path d="M12 6l6 6"/></svg></div>
+        <h3>Kreativtechniken</h3>
+        <p>Kalkputz, Spachteltechnik, Lasuren und Betonoptik. Für Wände, die Tiefe haben.</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9h-9V3Z"/><circle cx="9" cy="9" r="1.3"/><circle cx="7.5" cy="13" r="1.3"/></svg></div>
+        <h3>Farbberatung vor Ort</h3>
+        <p>Wir bringen den Farbfächer mit und schauen uns Ihr Licht an. Musterfläche inklusive.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ÜBER UNS ============ -->
+<section class="section about" id="ueber-uns">
+  <div class="wrap">
+    <div class="about__grid">
+      <div class="plate reveal">
+        <div class="plate__fill" style="background-color:#4F6E5C">
+          <div class="plate__band"></div>
+        </div>
+        <span class="tape">Bildplatz · Teamfoto</span>
+      </div>
+
+      <div class="about__txt reveal">
+        <p class="eyebrow">Über uns</p>
+        <h2>Ein Betrieb, in dem sich alle kennen.</h2>
+        <p class="lead">
+          Maler Mustermann ist ein erfundener Familienbetrieb aus der Region Wittlich. Drei Meister,
+          ein festes Team – und niemand, der nach dem Angebot plötzlich nicht mehr erreichbar ist.
+        </p>
+        <p class="lead">
+          Der Text steht hier stellvertretend für das, was ein echter Betrieb an dieser Stelle über
+          sich erzählen würde: wer arbeitet, wie gearbeitet wird und was der Kunde davon hat.
+        </p>
+
+        <div class="stats__head">
+          <span class="tape">Erfundene Zahlen</span>
+        </div>
+        <div class="stats">
+          <div><b>3</b><span>Meister im Betrieb</span></div>
+          <div><b>14</b><span>Mitarbeiterinnen und Mitarbeiter</span></div>
+          <div><b>2. Gen.</b><span>in Familienhand</span></div>
+        </div>
+
+        <p class="about__sign">Familie Mustermann<small>Platzhalter-Signatur – im echten Projekt steht hier der Inhaber.</small></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJEKTE ============ -->
+<section class="section" id="projekte">
+  <div class="wrap">
+    <div class="head reveal">
+      <div>
+        <p class="eyebrow">Beispielprojekte</p>
+        <h2>Zuletzt gestrichen.</h2>
+        <p class="head__tape"><span class="tape">Keine echten Referenzen</span></p>
+      </div>
+      <p class="lead">Platzhalter für Referenzen: pro Projekt ein Foto, der Ort, die verwendeten Farbtöne. Die Farbflächen stehen hier anstelle der späteren Bilder.</p>
+    </div>
+
+    <div class="projects">
+      <article class="proj reveal">
+        <div class="plate"><div class="plate__fill" style="background-color:#8A6A4F"></div><span class="tape">Bildplatz</span></div>
+        <div class="proj__meta"><h3>Altbauwohnung, Wittlich</h3><span>Innen</span></div>
+        <div class="proj__dots" aria-hidden="true"><i style="background:#8A6A4F"></i><i style="background:#E4E7DE"></i><i style="background:#B4541F"></i></div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="plate"><div class="plate__fill" style="background-color:#4A6B3F"></div><span class="tape">Bildplatz</span></div>
+        <div class="proj__meta"><h3>Einfamilienhaus, Bernkastel</h3><span>Fassade</span></div>
+        <div class="proj__dots" aria-hidden="true"><i style="background:#4A6B3F"></i><i style="background:#EEF0EA"></i><i style="background:#3A4247"></i></div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="plate"><div class="plate__fill" style="background-color:#3A4247"></div><span class="tape">Bildplatz</span></div>
+        <div class="proj__meta"><h3>Treppenhaus, Manderscheid</h3><span>Lack</span></div>
+        <div class="proj__dots" aria-hidden="true"><i style="background:#3A4247"></i><i style="background:#C6D3C4"></i><i style="background:#E2701E"></i></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABLAUF ============ -->
+<section class="section flow" id="ablauf">
+  <div class="wrap">
+    <p class="eyebrow">Ablauf</p>
+    <h2>Von der Anfrage bis zum fertigen Raum.</h2>
+
+    <ol class="steps" style="list-style:none;margin:0;padding:0">
+      <li class="step reveal"><b>01</b><h3>Anfrage</h3><p>Kurz anrufen oder Formular ausfüllen. Wir melden uns am selben Werktag.</p></li>
+      <li class="step reveal"><b>02</b><h3>Termin vor Ort</h3><p>Wir schauen uns die Flächen an und beraten zu Farbe und Technik.</p></li>
+      <li class="step reveal"><b>03</b><h3>Festpreis-Angebot</h3><p>Schriftlich, verständlich, mit klarem Zeitfenster. Innerhalb von drei Tagen.</p></li>
+      <li class="step reveal"><b>04</b><h3>Ausführung</h3><p>Abdecken, vorbereiten, streichen. Ein fester Ansprechpartner vor Ort.</p></li>
+      <li class="step reveal"><b>05</b><h3>Abnahme</h3><p>Gemeinsamer Rundgang, Baustelle besenrein. Erst dann die Rechnung.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ ABSCHLUSS-CTA ============ -->
+<section class="section final">
+  <div class="wrap">
+    <div class="final__box reveal">
+      <div class="final__l">
+        <p class="eyebrow">Nächster Schritt</p>
+        <h2>Wir schauen uns das an – kostenlos.</h2>
+        <p class="lead">Ein Termin bei Ihnen zu Hause, ein Farbfächer, ein ehrlicher Preis. Danach entscheiden Sie in Ruhe.</p>
+        <a class="btn btn--primary" href="#kontakt">Termin vereinbaren <span class="arw" aria-hidden="true">→</span></a>
+        <p class="final__note">Beispiel-Handlungsaufforderung. In dieser Demo führt der Button nur zum Formular weiter unten.</p>
+      </div>
+      <div class="final__r" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KONTAKT ============ -->
+<section class="section" id="kontakt" style="padding-top:0">
+  <div class="wrap">
+    <div class="contact__grid">
+      <div class="reveal">
+        <p class="eyebrow">Kontakt</p>
+        <h2 style="margin-top:20px">Sagen Sie uns, was ansteht.</h2>
+        <p style="margin-top:18px"><span class="tape">Frei erfundene Kontaktdaten</span></p>
+        <ul class="info">
+          <li>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <div><b>Werkstatt</b><span>Musterstraße 12, 54516 Wittlich</span></div>
+          </li>
+          <li>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1Z"/></svg>
+            <div><b>Telefon</b><span>06571 00 00 00</span></div>
+          </li>
+          <li>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            <div><b>E-Mail</b><span>info@beispiel-maler.de</span></div>
+          </li>
+          <li>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <div><b>Büro</b><span>Mo–Fr 8–17 Uhr</span></div>
+          </li>
+        </ul>
+        <p style="font-size:.85rem;color:var(--muted);margin-top:20px">
+          Adresse, Rufnummer und E-Mail existieren nicht. Die Vorwahl gehört zu Wittlich, die Nummer selbst ist eine Nullnummer.
+        </p>
+      </div>
+
+      <form class="form reveal" id="form" novalidate>
+        <div class="form__top"><span class="tape">Formular ohne Funktion</span></div>
+        <div class="form__row">
+          <label class="field" for="f-name"><span>Name</span><input id="f-name" type="text" name="name" autocomplete="name" placeholder="Vor- und Nachname"></label>
+          <label class="field" for="f-tel"><span>Telefon</span><input id="f-tel" type="tel" name="tel" autocomplete="tel" placeholder="Für Rückfragen"></label>
+        </div>
+        <label class="field" for="f-mail"><span>E-Mail</span><input id="f-mail" type="email" name="mail" autocomplete="email" placeholder="name@beispiel.de"></label>
+        <div class="form__row">
+          <label class="field" for="f-art"><span>Was steht an?</span>
+            <select id="f-art" name="art">
+              <option>Innenanstrich</option>
+              <option>Tapezieren</option>
+              <option>Fassade</option>
+              <option>Lackierarbeiten</option>
+              <option>Kreativtechnik</option>
+              <option>Weiß ich noch nicht</option>
+            </select>
+          </label>
+          <label class="field" for="f-ort"><span>Ort</span><input id="f-ort" type="text" name="ort" placeholder="z. B. Wittlich"></label>
+        </div>
+        <label class="field" for="f-text"><span>Kurz beschrieben</span><textarea id="f-text" name="text" placeholder="Zwei Zimmer, ca. 40 m², Wände und Decken."></textarea></label>
+        <button class="btn btn--primary" type="submit">Anfrage senden <span class="arw" aria-hidden="true">→</span></button>
+        <p class="form__hint" id="hint">Nichts wird gesendet oder gespeichert – das Formular zeigt nur Aufbau und Verhalten.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ÜBER DIESE DEMO (Eue Design) ============ -->
+<section class="section studio" id="demo">
+  <div class="wrap">
+    <div class="studio__grid">
+      <div class="reveal">
+        <p><span class="tape">Über diese Demo</span></p>
+        <h2>Eine echte Website für einen erfundenen Betrieb.</h2>
+        <p>
+          „Maler Mustermann“ ist kein Kunde und kein Unternehmen, sondern ein Beispielfall:
+          ein kleiner Handwerksbetrieb, wie es ihn in der Region hundertfach gibt. Alles, was
+          nach Betrieb aussieht – Name, Team, Zahlen, Referenzen, Adresse – ist dafür erfunden.
+        </p>
+        <p>
+          Echt ist die Arbeit darum herum: Seitenaufbau, Farbsystem, Typografie, der
+          Farbwähler im Kopfbereich, das Verhalten auf dem Telefon. Genau dieses Gerüst füllen
+          wir in einem realen Projekt mit Fotos, Texten und Daten des jeweiligen Betriebs.
+        </p>
+        <p>
+          Die Demo darf frei weitergegeben werden. Sie ersetzt kein Angebot, und die gezeigten
+          Leistungen, Preisversprechen und Abläufe sind Beispiele, keine Zusagen.
+        </p>
+
+        <div class="credit">
+          <svg class="credit__mark" viewBox="0 0 40 40" aria-hidden="true">
+            <rect width="40" height="40" rx="11" fill="#E7C98C"/>
+            <path d="M11 25.5c0-5 3.9-9 9-14 5.1 5 9 9 9 14a9 9 0 1 1-18 0Z" fill="#14181A"/>
+          </svg>
+          <div class="credit__txt">
+            <b>Eue Design</b>
+            <span>Konzept, Gestaltung und Umsetzung dieser Demo · 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ledger reveal">
+        <div class="ledger__block">
+          <h3>Was Sie hier wirklich sehen</h3>
+          <ul class="ledger--real">
+            <li>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>
+              <div><b>Gestaltung &amp; Farbsystem</b><span>Tannengrün, Terrakotta, Kalkweiß – als durchgehendes Raster</span></div>
+            </li>
+            <li>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>
+              <div><b>Seitenstruktur</b><span>Leistungen, Vertrauen, Referenzen, Ablauf, Anfrage</span></div>
+            </li>
+            <li>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>
+              <div><b>Der Farbwähler</b><span>Funktioniert: oben die Wandfarbe umstreichen</span></div>
+            </li>
+            <li>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>
+              <div><b>Verhalten auf dem Telefon</b><span>Menü, Umbrüche und Abstände bis 360&nbsp;px Breite</span></div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="ledger__block">
+          <h3>Was Platzhalter bleibt</h3>
+          <ul class="ledger--fake">
+            <li>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M4 7h16v10H4z"/><path d="m4 15 5-4 4 3 3-2 4 3"/></svg>
+              <div><b>Alle Bilder</b><span>Farbflächen statt Fotos – echte Aufnahmen kommen vom Betrieb</span></div>
+            </li>
+            <li>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M4 19V5m5 14V9m5 10v-7m5 7V7"/></svg>
+              <div><b>Zahlen &amp; Referenzen</b><span>Mitarbeiterzahl, Projekte und Orte sind ausgedacht</span></div>
+            </li>
+            <li>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              <div><b>Kontaktdaten</b><span>Adresse, Telefon und E-Mail führen nirgendwohin</span></div>
+            </li>
+            <li>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/></svg>
+              <div><b>Impressum &amp; Datenschutz</b><span>Nicht hinterlegt – es gibt kein Unternehmen dahinter</span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <a class="brand" href="#top">
+          <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true">
+            <rect width="40" height="40" rx="10" fill="#E2701E"/>
+            <path d="M11 25.5c0-5 3.9-9 9-14 5.1 5 9 9 9 14a9 9 0 1 1-18 0Z" fill="#1B3128"/>
+          </svg>
+          <span class="brand__txt"><span class="brand__name">Maler Mustermann</span><span class="brand__sub">Beispielbetrieb</span></span>
+        </a>
+        <p>Erfundener Malerbetrieb, entworfen als Demonstration für Handwerksbetriebe in der Region Wittlich.</p>
+        <p class="footer__legal">
+          <b>Kein eigenes Impressum.</b>
+          Diese Seite gehört zu keinem Unternehmen, erhebt keine Daten und verarbeitet keine Eingaben.
+          Es gilt das <a href="../../impressum.html" class="footer__legal-link">Impressum von Eue&nbsp;Design</a>.
+          Rechtstexte für den Betrieb selbst gehören erst in dessen echte Website.
+        </p>
+      </div>
+      <div>
+        <h4>Leistungen</h4>
+        <ul>
+          <li><a href="#leistungen">Innenanstrich</a></li>
+          <li><a href="#leistungen">Tapezieren</a></li>
+          <li><a href="#leistungen">Fassade</a></li>
+          <li><a href="#leistungen">Lackierarbeiten</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Betrieb</h4>
+        <ul>
+          <li><a href="#ueber-uns">Über uns</a></li>
+          <li><a href="#projekte">Projekte</a></li>
+          <li><a href="#ablauf">Ablauf</a></li>
+          <li><a href="#demo">Über diese Demo</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bot">
+      <span>Demoprojekt · keine echten Angaben · © 2026 Eue Design</span>
+      <span><a href="../../impressum.html">Impressum</a> · <a href="../../datenschutz.html">Datenschutz</a> · Umsetzung: <b>Eue Design</b></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---- Farbwähler: Hero-Wand umstreichen ---- */
+const hero  = document.querySelector('.hero');
+const chips = document.querySelectorAll('.chip');
+const cName = document.getElementById('c-name');
+const cCode = document.getElementById('c-code');
+
+chips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    chips.forEach(c => c.setAttribute('aria-pressed', 'false'));
+    chip.setAttribute('aria-pressed', 'true');
+    hero.style.setProperty('--wall', chip.dataset.color);
+    cName.textContent = chip.dataset.name;
+    cCode.textContent = chip.dataset.code;
+  });
+});
+
+/* ---- Mobile Menü ---- */
+const nav = document.getElementById('nav');
+const burger = document.getElementById('burger');
+burger.addEventListener('click', () => {
+  const open = nav.classList.toggle('is-open');
+  burger.setAttribute('aria-expanded', open);
+  burger.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+});
+nav.querySelectorAll('#menu a, .nav .btn').forEach(a => a.addEventListener('click', () => {
+  nav.classList.remove('is-open');
+  burger.setAttribute('aria-expanded', 'false');
+}));
+
+/* ---- Trennlinie unter der Navigation beim Scrollen ---- */
+const onScroll = () => nav.classList.toggle('is-stuck', window.scrollY > 8);
+onScroll();
+window.addEventListener('scroll', onScroll, { passive: true });
+
+/* ---- Sanftes Einblenden ---- */
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (i * 70) + 'ms';
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.14, rootMargin: '0px 0px -60px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+} else {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+}
+
+/* ---- Demo-Formular: nimmt nichts entgegen ---- */
+document.getElementById('form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const hint = document.getElementById('hint');
+  hint.textContent = 'Demo-Formular – hier wurde nichts gesendet. In der echten Website landet die Anfrage im Postfach des Betriebs.';
+  hint.style.color = '#B4540F';
+});
+</script>
+</body>
+</html>

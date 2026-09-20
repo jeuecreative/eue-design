@@ -1,0 +1,8 @@
+# Design-Demo ohne Unternehmen dahinter - soll nicht indexiert werden.
+# Hinweis: Auf einer GitHub-Project-Page (username.github.io/repo/) wird diese
+# Datei von Suchmaschinen NICHT gelesen - dort zaehlt nur robots.txt im Root
+# der User-Page. Die Absicherung uebernimmt das <meta name="robots"> in der
+# index.html. Diese Datei wirkt nur, wenn die Demo unter einer eigenen Domain
+# oder als User-Page laeuft.
+User-agent: *
+Disallow: /

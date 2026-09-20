@@ -1,0 +1,7 @@
+In diesen Ordner gehoeren:
+
+  fraunces-variable.woff2          (aus fraunces-latin-full-normal.woff2)
+  instrument-sans-variable.woff2   (aus instrument-sans-latin-wght-normal.woff2)
+  OFL.txt                          (Lizenztext - PFLICHT bei Weitergabe!)
+
+Bezugsquelle und Befehle: siehe LIESMICH.md, Abschnitt 1.

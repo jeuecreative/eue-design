@@ -18,7 +18,7 @@
   </script>
   <script src="consent.js" defer></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eue Design — Webdesign mit Strategie & Liebe zum Detail</title>
+  <title>Eue Design — Webdesign mit Strategie &amp; Liebe zum Detail</title>
   <meta name="description" content="Eue Design: durchdachtes Webdesign mit Strategie und Liebe zum Detail. Starke, authentische Websites mit persönlicher Betreuung von Anfang bis Ende.">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="stylesheet" href="styles.css">
@@ -39,6 +39,7 @@
         <a href="#ueber-mich">Über uns</a>
         <a href="#leistungen">Leistungen</a>
         <a href="#projekte">Projekte</a>
+        <a href="#demo">Demo</a>
         <a class="btn btn-primary" href="#kontakt">Kontakt</a>
       </nav>
     </div>
@@ -238,6 +239,68 @@
     </div>
   </section>
 
+  <!-- DEMO -->
+  <section id="demo" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Demo</p>
+        <h2>Design-Demo: Maler Mustermann</h2>
+        <p>Ein Website-Entwurf für einen erfundenen Malerbetrieb aus der Region Wittlich – gebaut, um zu zeigen, wie ein Handwerksbetrieb online auftreten kann. Klick dich direkt in der Vorschau durch.</p>
+      </div>
+
+      <ul class="demo-meta">
+        <li><b>Art</b> Konzept &amp; Gestaltung</li>
+        <li><b>Jahr</b> 2026</li>
+        <li><b>Status</b> Demo, kein realer Kunde</li>
+      </ul>
+
+      <!-- Demo-Einbettung im Browser-Rahmen (Styles: styles.css, Skript: nav.js) -->
+      <div class="df">
+        <div class="df__frame">
+
+          <div class="df__bar">
+            <span class="df__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="df__url">eue-design.de/demos/maler-mustermann/</span>
+            <span class="df__flag">Demo</span>
+          </div>
+
+          <div class="df__window">
+            <!-- Live-Vorschau von der eigenen Domain: kein Fremd-Request, keine Einwilligung nötig. -->
+            <iframe
+              class="df__iframe"
+              src="demos/maler-mustermann/index.html"
+              title="Vorschau der Design-Demo Maler Mustermann"
+              loading="lazy"
+              referrerpolicy="same-origin"></iframe>
+
+            <!-- Ersatz auf schmalen Bildschirmen -->
+            <div class="df__card">
+              <p>
+                <strong>Vorschau auf dem Telefon</strong>
+                Die Demo ist eine vollständige Website – im kleinen Rahmen lässt sie sich
+                schlecht bedienen. Besser in einem eigenen Tab ansehen.
+              </p>
+              <a class="df__open" href="demos/maler-mustermann/index.html" target="_blank" rel="noopener">
+                Demo öffnen <span class="df__arw" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="df__foot">
+          <p class="df__note">
+            Fiktiver Betrieb. Texte, Zahlen, Referenzen und Kontaktdaten sind erfunden –
+            gezeigt wird ausschließlich die Gestaltung.
+          </p>
+          <a class="df__open" href="demos/maler-mustermann/index.html" target="_blank" rel="noopener">
+            In neuem Tab öffnen <span class="df__arw" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- KONTAKT CTA -->
   <section id="kontakt" class="cta">
     <div class="wrap">
@@ -260,6 +323,7 @@
       <nav class="footer-links">
         <a href="#leistungen">Leistungen</a>
         <a href="#projekte">Projekte</a>
+        <a href="#demo">Demo</a>
         <a href="tel:+4915170875533">Telefon</a>
         <a href="mailto:kontakt@eue-design.de">Kontakt</a>
         <a href="impressum.html">Impressum</a>
