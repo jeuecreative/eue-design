@@ -1,2 +1,8 @@
 User-agent: *
 Allow: /
+
+# Die Design-Demo soll nicht in den Suchergebnissen auftauchen.
+# Verlässlich sperrt das noindex im Kopf der Demo – crawlen darf
+# Google sie trotzdem, sonst liest es das noindex gar nicht erst.
+
+Sitemap: https://eue-design.de/sitemap.xml
