@@ -405,10 +405,19 @@ section[id] { scroll-margin-top: 90px; }
 /* Karte verlinkt auf die Website des Kunden */
 .projekt__link { display: block; color: var(--ink); }
 .projekt__link:hover { color: var(--ink); }
-/* Kundenlogo über dem Projekttitel. Alle Logos auf gleiche Höhe
-   normiert, Breite richtet sich nach dem jeweiligen Logo. */
-.projekt__logo { height: 76px; display: flex; align-items: center; margin-bottom: 20px; }
-.projekt__logo img { height: 100%; width: auto; max-width: 250px; object-fit: contain; }
+/* Kundenlogo füllt die Bildfläche der Karte. Heller Grund, damit die
+   Logos mit ihren eigenen Farben wirken; der Innenabstand hält sie von
+   den Kanten fern, damit sie nicht gedrängt aussehen. */
+.projekt .thumb--logo {
+  display: flex; align-items: center; justify-content: center;
+  background: var(--soft);
+  padding: 13% 16%;
+}
+.projekt .thumb--logo img {
+  width: auto; height: auto;
+  max-width: 100%; max-height: 100%;
+  object-fit: contain;
+}
 .projekt__visit {
   display: inline-flex; align-items: center; gap: .5em;
   margin-top: 16px; color: var(--accent); font-weight: 600; font-size: 16px;
