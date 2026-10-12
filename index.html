@@ -36,7 +36,7 @@
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
       <nav class="nav" id="nav">
-        <a href="#ueber-mich">Über uns</a>
+        <a href="#ueber-mich">Über mich</a>
         <a href="#leistungen">Leistungen</a>
         <a href="#projekte">Projekte</a>
         <a href="#demo">Demo</a>
@@ -64,13 +64,14 @@
   <section id="ueber-mich">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">Über uns</p>
-        <h2>Hallo, wir sind Eue Design.</h2>
+        <p class="eyebrow">Über mich</p>
+        <h2>Hallo, ich bin Jeanne.</h2>
       </div>
       <div class="about-grid">
         <aside class="about-card">
-          <img class="globe" src="assets/globe.png" alt="">
-          <h3>Eue Design</h3>
+          <!-- Porträt: fehlt die Datei, erscheint ersatzweise das Globus-Icon. -->
+          <img class="portrait" src="assets/portrait.jpg" alt="Jeanne Eue, Inhaberin von Eue Design" onerror="this.onerror=null;this.src='assets/globe.png';this.className='globe'">
+          <h3>Jeanne Eue</h3>
           <p class="role">Webdesign &amp; Strategie</p>
           <ul>
             <li>Mehrjährige Erfahrung</li>
@@ -80,9 +81,9 @@
           </ul>
         </aside>
         <div class="about-text">
-          <p>Was als Leidenschaft begann, ist heute unser Handwerk: durchdachtes Webdesign mit fundierter E-Commerce-Expertise im Rücken.</p>
-          <p>Seit mehreren Jahren gestalten wir Websites für Unternehmen, die im Netz genauso überzeugen wollen wie im echten Leben. Bei uns bekommst du keine anonyme Bearbeitung in der Warteschlange, sondern eine feste, persönliche Betreuung von Anfang bis Ende.</p>
-          <p>Uns ist wichtig, dass deine Website nicht nur gut aussieht, sondern authentisch zu dir passt – mit dem Blick fürs Detail, der den Unterschied macht. Wir arbeiten mit Unternehmen und Marken, die wissen, was sie können, und einen Online-Auftritt verdienen, der das zeigt.</p>
+          <p>Was als Leidenschaft begann, ist heute mein Handwerk: durchdachtes Webdesign mit fundierter E-Commerce-Expertise im Rücken.</p>
+          <p>Seit mehreren Jahren gestalte ich Websites für Unternehmen, die im Netz genauso überzeugen wollen wie im echten Leben. Bei mir landest du in keiner anonymen Warteschlange – du arbeitest von Anfang bis Ende direkt mit mir.</p>
+          <p>Mir ist wichtig, dass deine Website nicht nur gut aussieht, sondern authentisch zu dir passt – mit dem Blick fürs Detail, der den Unterschied macht. Ich arbeite mit Unternehmen und Marken, die wissen, was sie können, und einen Online-Auftritt verdienen, der das zeigt.</p>
         </div>
       </div>
     </div>
@@ -129,7 +130,7 @@
           <span class="label">Paket 1</span>
           <span class="name">Visitenkarte</span>
           <p class="tagline">Dein Auftritt auf einer Seite – schlank und schnell online.</p>
-          <div class="price">259 €<small>Einmalig · zzgl. MwSt.</small></div>
+          <div class="price price--ask">Auf Anfrage<small>Festpreis nach kurzem Gespräch</small></div>
           <ul>
             <li>1-Seiten-Website als digitale Visitenkarte</li>
             <li>Einbindung deines vorhandenen Logos</li>
@@ -147,7 +148,7 @@
           <span class="label">Paket 2</span>
           <span class="name">Starter</span>
           <p class="tagline">Alles, was du brauchst, um online sichtbar zu sein.</p>
-          <div class="price">899 €<small>Einmalig · zzgl. MwSt.</small></div>
+          <div class="price price--ask">Auf Anfrage<small>Festpreis nach kurzem Gespräch</small></div>
           <ul>
             <li>Professionelle One-Page-Website</li>
             <li>Mobil optimiert (Smartphone & Tablet)</li>
@@ -164,7 +165,7 @@
           <span class="label">Paket 3</span>
           <span class="name">Premium</span>
           <p class="tagline">Mehr Seiten, mehr Wirkung, mehr Kunden.</p>
-          <div class="price">1.899 €<small>Einmalig · zzgl. MwSt.</small></div>
+          <div class="price price--ask">Auf Anfrage<small>Festpreis nach kurzem Gespräch</small></div>
           <ul>
             <li>Mehrseitige Website (bis zu 5 Seiten)</li>
             <li>Individuelles Design nach deinen Wünschen</li>
@@ -238,25 +239,34 @@
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">Projekte</p>
-        <h2>Ein Einblick in unsere Arbeit</h2>
-        <p>Eine Auswahl an Websites, die wir umgesetzt haben.</p>
+        <h2>Ein Einblick in meine Arbeit</h2>
+        <p>Eine Auswahl an Websites, die ich umgesetzt habe.</p>
       </div>
       <div class="projekte-grid">
         <article class="projekt">
-          <div class="thumb"><img src="assets/projekt-fieth-bau.svg" alt="Projektvorschau Fieth Bau"></div>
-          <div class="body">
-            <span class="kind">Redesign · WordPress</span>
-            <h3>Fieth Bau</h3>
-            <p>Redesign für ein Bauunternehmen: Der bestehende Auftritt wurde modernisiert und auf den neuesten Stand gebracht – klar, solide und vertrauenswürdig, passend zur Branche.</p>
-          </div>
+          <a class="projekt__link" href="https://fieth-bau.de" target="_blank" rel="noopener">
+            <div class="thumb"><img src="assets/projekt-fieth-bau.svg" alt="Projektvorschau Fieth Bau"></div>
+            <div class="body">
+              <!-- Fehlt die Logodatei, entfernt sich der Platz von selbst. -->
+              <div class="projekt__logo"><img src="assets/logo-fieth-bau.png" alt="Logo Fieth Bau GmbH" loading="lazy" onerror="this.parentNode.remove()"></div>
+              <span class="kind">Redesign · WordPress</span>
+              <h3>Fieth Bau</h3>
+              <p>Redesign für ein Bauunternehmen: Der bestehende Auftritt wurde modernisiert und auf den neuesten Stand gebracht – klar, solide und vertrauenswürdig, passend zur Branche.</p>
+              <span class="projekt__visit">Website ansehen <span class="projekt__arw" aria-hidden="true">→</span></span>
+            </div>
+          </a>
         </article>
         <article class="projekt">
-          <div class="thumb"><img src="assets/projekt-aluminiumfoil-consult.png" alt="Projektvorschau Aluminium Foil Consult"></div>
-          <div class="body">
-            <span class="kind">Neue Website</span>
-            <h3>Aluminium Foil Consult</h3>
-            <p>Aufbau einer Website als digitale Visitenkarte: ein eigener, professioneller Online-Auftritt, der das Unternehmen kompakt und überzeugend präsentiert.</p>
-          </div>
+          <a class="projekt__link" href="https://aluminiumfoil-consult.com/" target="_blank" rel="noopener">
+            <div class="thumb"><img src="assets/projekt-aluminiumfoil-consult.png" alt="Projektvorschau Aluminiumfoil-Consult"></div>
+            <div class="body">
+              <div class="projekt__logo"><img src="assets/logo-aluminiumfoil-consult.png" alt="Logo Aluminiumfoil-Consult" loading="lazy" onerror="this.parentNode.remove()"></div>
+              <span class="kind">Neue Website · Mehrseitig</span>
+              <h3>Aluminiumfoil-Consult</h3>
+              <p>Mehrseitiger Auftritt für eine Beratung in der Aluminiumindustrie: Philosophie, Themen und Referenzen liegen auf eigenen Unterseiten, dazu Kontakt und Rechtstexte – englischsprachig für internationale Kunden.</p>
+              <span class="projekt__visit">Website ansehen <span class="projekt__arw" aria-hidden="true">→</span></span>
+            </div>
+          </a>
         </article>
       </div>
     </div>
@@ -294,7 +304,7 @@
         </a>
 
         <div class="demo-text">
-          <p>Nicht jeder Betrieb hat schon eine Website, an der wir zeigen können, wie wir arbeiten. Deshalb haben wir eine gebaut: <b>Maler Mustermann</b>, ein erfundener Malerbetrieb aus der Region Wittlich – vollständig umgesetzt, vom Farbkonzept bis zum Kontaktformular.</p>
+          <p>Nicht jeder Betrieb hat schon eine Website, an der ich zeigen kann, wie ich arbeite. Deshalb habe ich eine gebaut: <b>Maler Mustermann</b>, ein erfundener Malerbetrieb aus der Region Wittlich – vollständig umgesetzt, vom Farbkonzept bis zum Kontaktformular.</p>
           <ul>
             <li>Aufbau einer kompletten One-Page-Website für einen Handwerksbetrieb</li>
             <li>Interaktiver Farbwähler, Leistungen, Ablauf und Kontakt</li>
@@ -312,7 +322,7 @@
     <div class="wrap">
       <p class="eyebrow" style="color:var(--sky);">Kontakt</p>
       <h2>Lass uns dein Projekt besprechen.</h2>
-      <p>Erzähl uns kurz, was du vorhast – wir melden uns persönlich bei dir.</p>
+      <p>Erzähl mir kurz, was du vorhast – ich melde mich persönlich bei dir.</p>
       <a class="btn btn-primary" href="mailto:kontakt@eue-design.de?subject=Projektanfrage%20%C3%BCber%20eue-design.de">E-Mail schreiben</a>
       <a class="mail" href="mailto:kontakt@eue-design.de">kontakt@eue-design.de</a>
       <a class="mail" href="tel:+4915170875533">+49 151 70875533</a>
@@ -350,7 +360,7 @@
   <!-- COOKIE-CONSENT-BANNER (Google Ads Conversion-Tracking) -->
   <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Cookie-Einwilligung" tabindex="-1">
     <div class="cookie-banner-inner">
-      <p>Wir nutzen ein Cookie für Google Ads Conversion-Tracking, um zu sehen, wie gut unsere Anzeigen wirken. Es ist nicht technisch notwendig und wird nur mit deiner Einwilligung gesetzt. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+      <p>Ich nutze ein Cookie für Google Ads Conversion-Tracking, um zu sehen, wie gut meine Anzeigen wirken. Es ist nicht technisch notwendig und wird nur mit deiner Einwilligung gesetzt. Mehr dazu in meiner <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
       <div class="cookie-banner-actions">
         <button type="button" class="btn btn-ghost" id="cookieDecline">Ablehnen</button>
         <button type="button" class="btn btn-primary" id="cookieAccept">Alle akzeptieren</button>

@@ -208,6 +208,14 @@ section[id] { scroll-margin-top: 90px; }
 .about-card .globe {
   width: 76px; margin-bottom: 22px;
 }
+/* Porträt in der Über-mich-Karte. Rund und beschnitten, damit jedes
+   Seitenverhältnis passt; der helle Ring trennt es vom dunklen Grund. */
+.about-card .portrait {
+  width: 136px; height: 136px;
+  border-radius: 50%; object-fit: cover; object-position: center top;
+  margin-bottom: 24px;
+  border: 3px solid rgba(255,255,255,0.18);
+}
 .about-card h3 {
   color: #fff; font-size: 24px; margin-bottom: 6px;
 }
@@ -283,6 +291,8 @@ section[id] { scroll-margin-top: 90px; }
   font-size: 38px; font-weight: 700; color: var(--accent);
   line-height: 1;
 }
+/* Pakete ohne Zahl: "Auf Anfrage" braucht nicht die Größe eines Preises. */
+.paket .price--ask { font-size: 26px; }
 .paket .price small { display:block; font-family: var(--font-body); font-size: 13px; font-weight: 400; color: var(--muted); margin-top: 6px; }
 .paket ul { list-style: none; margin: 24px 0 28px; flex-grow: 1; }
 .paket li {
@@ -387,10 +397,25 @@ section[id] { scroll-margin-top: 90px; }
 .projekt:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(21,33,46,0.09); }
 .projekt .thumb { aspect-ratio: 800 / 560; background: var(--soft); }
 .projekt .thumb img { width: 100%; height: 100%; object-fit: cover; }
-.projekt .body { padding: 28px 30px 32px; }
-.projekt .kind { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+.projekt .body { padding: 26px 30px 30px; }
+.projekt .kind { display: block; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
 .projekt h3 { font-size: 23px; margin: 8px 0 10px; }
 .projekt p { color: var(--muted); font-size: 16px; }
+
+/* Karte verlinkt auf die Website des Kunden */
+.projekt__link { display: block; color: var(--ink); }
+.projekt__link:hover { color: var(--ink); }
+/* Kundenlogo über dem Projekttitel. Alle Logos auf gleiche Höhe
+   normiert, Breite richtet sich nach dem jeweiligen Logo. */
+.projekt__logo { height: 76px; display: flex; align-items: center; margin-bottom: 20px; }
+.projekt__logo img { height: 100%; width: auto; max-width: 250px; object-fit: contain; }
+.projekt__visit {
+  display: inline-flex; align-items: center; gap: .5em;
+  margin-top: 16px; color: var(--accent); font-weight: 600; font-size: 16px;
+}
+.projekt__arw { transition: transform .2s; }
+.projekt:hover .projekt__arw { transform: translateX(4px); }
+.projekt:hover .projekt__visit { color: var(--accent-d); }
 
 /* =========================================================
    Demo (Sektion #demo auf der Startseite)
