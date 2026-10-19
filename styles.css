@@ -423,6 +423,83 @@ section[id] { scroll-margin-top: 90px; }
 /* Projektbild: Mockup auf weißem Grund, randlos in der Karte. */
 .projekt .thumb { background: #fff; }
 
+/* =========================================================
+   Demo (Sektion #demo auf der Startseite)
+   Gleiche Kartenlogik wie die echten Projekte, nur mit
+   Logokachel statt Screenshot und mit Demo-Kennzeichnung.
+   ========================================================= */
+.demo-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 360px) 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.demo-card {
+  display: block;
+  border: 1px solid var(--divider); border-radius: 6px; overflow: hidden;
+  background: var(--paper); color: var(--ink);
+  transition: box-shadow .2s, transform .2s, border-color .2s;
+}
+.demo-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(21,33,46,0.09); border-color: var(--sky); color: var(--ink); }
+
+/* Quadratische Kachel in den Farben des Demo-Betriebs –
+   liest sich dadurch als fremde Marke, nicht als unsere. */
+.demo-card__tile {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
+  aspect-ratio: 1 / 1;
+  background: #1B3128;
+  background-image: radial-gradient(circle at 50% 38%, #2A4638 0%, #1B3128 68%);
+  text-align: center; padding: 24px;
+}
+.demo-card__flag {
+  position: absolute; top: 16px; right: 16px;
+  background: var(--sky); color: var(--ink);
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 4px 11px; border-radius: 2px;
+}
+.demo-card__mark { width: 68px; height: 68px; }
+.demo-card__logo { display: block; }
+.demo-card__name {
+  display: block; font-family: var(--font-display); font-weight: 700;
+  font-size: 22px; line-height: 1.2; color: #fff;
+}
+.demo-card__sub {
+  display: block; margin-top: 4px;
+  font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #C8A882;
+}
+
+.demo-card__body { display: block; padding: 22px 26px 26px; }
+.demo-card__kind {
+  display: block; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); font-weight: 600;
+}
+.demo-card__title {
+  display: block; font-family: var(--font-display); font-weight: 700;
+  font-size: 20px; line-height: 1.25; margin: 8px 0 14px;
+}
+.demo-card__link {
+  display: inline-flex; align-items: center; gap: .5em;
+  color: var(--accent); font-weight: 600; font-size: 16px;
+}
+.demo-card__arw { transition: transform .2s; }
+.demo-card:hover .demo-card__arw { transform: translateX(4px); }
+
+.demo-text p { color: #344656; font-size: 18px; margin-bottom: 20px; }
+.demo-text ul { list-style: none; margin-bottom: 20px; }
+.demo-text li {
+  font-size: 16px; color: var(--muted); padding: 7px 0;
+  display: flex; gap: 11px; align-items: flex-start;
+}
+.demo-text li::before { content: '→'; color: var(--sky); font-weight: 700; flex-shrink: 0; }
+.demo-text__note { font-size: 15px; color: var(--muted); }
+
+@media (max-width: 900px) {
+  .demo-grid { grid-template-columns: 1fr; gap: 32px; }
+  .demo-card { max-width: 360px; }
+}
+
 /* --- Ablauf -------------------------------------------- */
 .ablauf-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
 .schritt {
